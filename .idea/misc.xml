@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/drawable/ic_search_xml.xml" value="0.10729166666666666" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/font-v26/gotham.xml" value="0.12135416666666667" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/font/gotham.xml" value="0.12135416666666667" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/card_view.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/house_details.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/info_activity.xml" value="0.22" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/info_activiy.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/ite_empty_dataset.xml" value="0.1" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/item_empty_dataset.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/recycler_view_item.xml" value="0.15353260869565216" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

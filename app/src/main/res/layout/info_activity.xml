@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_gray"
+    tools:context=".InfoActivity">
+
+    <TextView
+        android:id="@+id/about_title"
+        style="@style/Title01Style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/about_description"
+        style="@style/Body_HintStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/body"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_title" />
+
+    <TextView
+        android:id="@+id/designanddev"
+        style="@style/Title01Style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/design_and_development"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_description" />
+
+    <ImageView
+        android:id="@+id/dtt_logo"
+        android:layout_width="124dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="@dimen/layout_margin"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/dttlogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/designanddev"
+        app:srcCompat="@drawable/dtt_banner" />
+
+    <TextView
+        android:id="@+id/by_dtt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/by_dtt"
+        style="@style/Body_HintStyle"
+        app:layout_constraintStart_toEndOf="@+id/dtt_logo"
+        app:layout_constraintTop_toBottomOf="@+id/designanddev" />
+
+    <TextView
+        android:id="@+id/dttwebsite"
+        style="@style/Body_HintStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:linksClickable="true"
+        android:autoLink="web"
+        android:text="@string/dtt_website"
+        android:textColor="#00838F"
+        app:layout_constraintStart_toEndOf="@+id/dtt_logo"
+        app:layout_constraintTop_toBottomOf="@+id/by_dtt"
+        tools:ignore="TouchTargetSizeCheck"
+        android:focusable="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/homebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/dark_gray"
+            android:contentDescription="@string/home_button"
+            app:srcCompat="@drawable/ic_home"
+            app:tint="@color/medium"
+            tools:ignore="RedundantDescriptionCheck" />
+
+        <ImageButton
+            android:id="@+id/infobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/dark_gray"
+            android:contentDescription="@string/info_button"
+            app:srcCompat="@drawable/ic_info"
+            app:tint="@color/black"
+            tools:ignore="RedundantDescriptionCheck,ImageContrastCheck" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
