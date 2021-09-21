@@ -10,7 +10,7 @@ import retrofit2.http.Headers
 const val HOUSE_API_KEY = "98bww4ezuzfePCYFxJEWyszbUXc7dxRx"
 const val BASE_URL = "https://intern.docker-dev.d-tt.nl/api/"
 interface HousesApi {
-    @Headers("Access key: $HOUSE_API_KEY")
+    @Headers("Access-key: $HOUSE_API_KEY")
     @GET(value = "house")
     fun getHouses() : Call<List<House>>
     companion object {
