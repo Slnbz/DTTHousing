@@ -3,6 +3,7 @@ package com.example.android.dtthousing
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +12,14 @@ import com.bumptech.glide.Glide
 
 class HouseAdapter(val houses: List<House>) : RecyclerView.Adapter<HouseAdapter.ViewHolder>() {
 
+    companion object {
+        private const val BASE_URL_FOR_IMAGE =
+                "https://intern.docker-dev.d-tt.nl"
+    }
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
 
-        val image : TextView = itemView.findViewById(R.id.houseImage)
+        val image : ImageView = itemView.findViewById(R.id.houseImage)
         val bathroom : TextView = itemView.findViewById(R.id.amountofbath)
         val housesize: TextView = itemView.findViewById(R.id.floorarea)
         val city : TextView = itemView.findViewById(R.id.city)
@@ -44,7 +49,7 @@ class HouseAdapter(val houses: List<House>) : RecyclerView.Adapter<HouseAdapter.
         holder.city.text = houze.city
         holder.zip.text = houze.zip
         Glide.with(holder.image.context)
-            .load(houze.image)
+            .load(BASE_URL_FOR_IMAGE+houze.image)
             .into(holder.image.findViewById(R.id.houseImage))
 
     }
