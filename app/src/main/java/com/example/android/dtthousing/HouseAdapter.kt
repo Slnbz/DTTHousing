@@ -42,7 +42,7 @@ class HouseAdapter(val houses: List<House>) : RecyclerView.Adapter<HouseAdapter.
     override fun onBindViewHolder(holder: HouseAdapter.ViewHolder, position: Int) {
         val houze = houses[position]
 
-        holder.price.text = houze.price.toString()
+        holder.price.text = "$"+ houze.price.toString()
         holder.bedroom.text = houze.bedrooms.toString()
         holder.bathroom.text = houze.bathrooms.toString()
         holder.housesize.text = houze.size.toString()
