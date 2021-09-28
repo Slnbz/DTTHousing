@@ -29,6 +29,10 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
         val zip : TextView = itemView.findViewById(R.id.zip)
         val price : TextView = itemView.findViewById(R.id.price)
         val bedroom : TextView = itemView.findViewById(R.id.amountofbed)
+        val description :TextView = itemView.findViewById(R.id.description)
+        val latitude : TextView = itemView.findViewById(R.id.latitudedetail)
+        val longitude : TextView = itemView.findViewById(R.id.longitudedetail)
+        val createdDate : TextView = itemView.findViewById(R.id.createdDate)
 
         fun bind(item: House) {
             val houze = houses[position]
@@ -38,6 +42,10 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
             housesize.text = houze.size.toString()
             city.text = houze.city
             zip.text = houze.zip
+            description.text = houze.description
+            latitude.text = houze.latitude.toString()
+            longitude.text = houze.longitude.toString()
+            createdDate.text = houze.createdDate
             Glide.with(image.context)
                 .load(BASE_URL_FOR_IMAGE+houze.image)
                 .into(image.findViewById(R.id.houseImage))
@@ -59,7 +67,10 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
     override fun onBindViewHolder(holder: HouseAdapter.ViewHolder, position: Int) {
         val houze = houses[position]
 
-
+        holder.description.text = houze.description
+        holder.latitude.text = houze.latitude.toString()
+        holder.longitude.text = houze.longitude.toString()
+        holder.createdDate.text = houze.createdDate
         holder.price.text = "$"+ houze.price.toString()
         holder.bedroom.text = houze.bedrooms.toString()
         holder.bathroom.text = houze.bathrooms.toString()

@@ -33,7 +33,7 @@
             app:layout_constraintTop_toBottomOf="@+id/zip">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/pricedetail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -115,7 +115,13 @@
             style="@style/Title01Style"/>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/createdDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title03Style"/>
+
+        <TextView
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/body" />
@@ -126,12 +132,24 @@
             android:layout_height="wrap_content"
             android:text="Location"
             style="@style/Title01Style"/>
+        <TextView
+            android:id="@+id/longitudedetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title03Style"/>
+        <TextView
+            android:id="@+id/latitudedetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title03Style"/>
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_margin="16dp" />
+
+
 
     </LinearLayout>
 
