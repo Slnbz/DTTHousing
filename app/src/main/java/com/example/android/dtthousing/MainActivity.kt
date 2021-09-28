@@ -3,6 +3,7 @@ package com.example.android.dtthousing
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,8 +25,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
 
-
         }
+
 
 
         HousesApi().getHouses().enqueue(object:Callback<List<House>>{
@@ -44,11 +45,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
+
+        return true
+    }
 
     private fun showHouses(houses: List<House>){
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)
-        recyclerViewHouses.adapter = HouseAdapter(houses)
+        recyclerViewHouses.adapter = HouseAdapter(houses,)
     }
 
 
