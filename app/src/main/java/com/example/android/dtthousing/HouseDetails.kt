@@ -17,9 +17,9 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.house_details)
 
-        val mapFragment = supportFragmentManager
+        /*val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapView) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        mapFragment.getMapAsync(this)*/
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
