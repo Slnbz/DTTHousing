@@ -46,7 +46,7 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
             createdDate.text = houze.createdDate
             Glide.with(image.context)
                 .load(BASE_URL_FOR_IMAGE+houze.image)
-                .into(image.findViewById(R.id.houseImage))
+                .into(image.findViewById(R.id.detailimage))
         }
         init {
             itemView.setOnClickListener{
