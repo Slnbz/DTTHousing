@@ -54,7 +54,12 @@ class MainActivity : AppCompatActivity() {
     private fun showHouses(houses: List<House>){
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)
-        recyclerViewHouses.adapter = HouseAdapter(houses,)
+        recyclerViewHouses.adapter = HouseAdapter(houses){ house ->
+            val houseDetailsActivityIntent = Intent(this, HouseDetails::class.java)
+            houseDetailsActivityIntent.putExtra("latitude", house.latitude)
+            houseDetailsActivityIntent.putExtra("longitude", house.longitude)
+            startActivity(houseDetailsActivityIntent)
+        }
     }
 
 
