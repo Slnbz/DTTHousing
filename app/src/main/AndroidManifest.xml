@@ -17,6 +17,10 @@
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
+            android:name=".HouseDetails"
+            android:theme="@style/Theme.Design.NoActionBar"
+            />
+        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">

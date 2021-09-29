@@ -1,6 +1,7 @@
 package com.example.android.dtthousing
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -20,6 +21,8 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback {
         /*val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapView) as SupportMapFragment
         mapFragment.getMapAsync(this)*/
+
+
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
