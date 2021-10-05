@@ -1,5 +1,7 @@
 package com.example.android.dtthousing
 
+import java.io.Serializable
+
 data class House (
     val id: Int,
     val image: String,
@@ -13,4 +15,4 @@ data class House (
     val latitude: Int,
     val longitude: Int,
     val createdDate: String
-    )
+    ) : Serializable

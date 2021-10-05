@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit) : RecyclerView.Adapter<HouseAdapter.ViewHolder>() {
 
     companion object {
-        private const val BASE_URL_FOR_IMAGE =
+        const val BASE_URL_FOR_IMAGE =
                 "https://intern.docker-dev.d-tt.nl"
     }
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){

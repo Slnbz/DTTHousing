@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)
         recyclerViewHouses.adapter = HouseAdapter(houses){ House ->
             val houseDetailsActivityIntent = Intent(this, HouseDetails::class.java)
+            houseDetailsActivityIntent.putExtra("house", House)
             startActivity(houseDetailsActivityIntent)
         }
     }
