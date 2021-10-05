@@ -1,15 +1,10 @@
 package com.example.android.dtthousing
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil.setContentView
-import androidx.recyclerview.widget.RecyclerView
+
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -20,16 +15,11 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 abstract class HouseDetails : AppCompatActivity(){
 
-    companion object {
-        private const val BASE_URL_FOR_IMAGE =
-            "https://intern.docker-dev.d-tt.nl"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val houze = intent.getSerializableExtra("house") as House
-        setContentView(R.layout.house_details)
 
+        setContentView(R.layout.house_details)
 
         val image : ImageView = findViewById(R.id.houseImage)
         val bathroom : TextView = findViewById(R.id.amountofbath)
@@ -62,9 +52,9 @@ abstract class HouseDetails : AppCompatActivity(){
     }
 
 
-/*    private lateinit var myMap: GoogleMap*/
+   /* private lateinit var myMap: GoogleMap*/
 
-    /*override fun onCreate(savedInstanceState: Bundle?) {
+   /* override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.house_details)
 
@@ -74,9 +64,9 @@ abstract class HouseDetails : AppCompatActivity(){
 
 
 
-    }
+    }*/
 
-    override fun onMapReady(googleMap: GoogleMap) {
+   /* override fun onMapReady(googleMap: GoogleMap) {
         myMap = googleMap
 
         val houselocation = LatLng(45.0, 65.0)
