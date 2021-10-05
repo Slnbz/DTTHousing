@@ -18,6 +18,7 @@
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".HouseDetails"
+            android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar"
             />
         <activity
