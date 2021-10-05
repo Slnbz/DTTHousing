@@ -12,7 +12,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-abstract class HouseDetails : AppCompatActivity(){
+class HouseDetails : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,13 +20,11 @@ abstract class HouseDetails : AppCompatActivity(){
 
         setContentView(R.layout.house_details)
 
-        val image : ImageView = findViewById(R.id.houseImage)
-        val bathroom : TextView = findViewById(R.id.amountofbath)
-        val housesize: TextView = findViewById(R.id.floorarea)
-        val city : TextView = findViewById(R.id.city)
-        val zip : TextView = findViewById(R.id.zip)
-        val price : TextView = findViewById(R.id.price)
-        val bedroom : TextView = findViewById(R.id.amountofbed)
+        val image : ImageView = findViewById(R.id.detailimage)
+        val bathroom : TextView = findViewById(R.id.detailamountofbath)
+        val housesize: TextView = findViewById(R.id.detailfloorarea)
+        val price : TextView = findViewById(R.id.detailprice)
+        val bedroom : TextView = findViewById(R.id.detailamountofbed)
         val description :TextView = findViewById(R.id.description)
         val latitude : TextView = findViewById(R.id.latitudedetail)
         val longitude : TextView = findViewById(R.id.longitudedetail)
@@ -36,8 +34,6 @@ abstract class HouseDetails : AppCompatActivity(){
         bedroom.text = houze.bedrooms.toString()
         bathroom.text = houze.bathrooms.toString()
         housesize.text = houze.size.toString()
-        city.text = houze.city
-        zip.text = houze.zip
         description.text = houze.description
         latitude.text = houze.latitude.toString()
         longitude.text = houze.longitude.toString()

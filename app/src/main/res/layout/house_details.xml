@@ -33,7 +33,7 @@
             app:layout_constraintTop_toBottomOf="@+id/zip">
 
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/detailprice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -50,7 +50,7 @@
                 app:srcCompat="@drawable/ic_bed" />
 
             <TextView
-                android:id="@+id/amountofbed"
+                android:id="@+id/detailamountofbed"
                 style="@style/DetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 app:srcCompat="@drawable/ic_bath" />
 
             <TextView
-                android:id="@+id/amountofbath"
+                android:id="@+id/detailamountofbath"
                 style="@style/DetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                 app:srcCompat="@drawable/ic_layers" />
 
             <TextView
-                android:id="@+id/floorarea"
+                android:id="@+id/detailfloorarea"
                 style="@style/DetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 app:srcCompat="@drawable/ic_location" />
 
             <TextView
-                android:id="@+id/locationdistance"
+                android:id="@+id/detaillocationdistance"
                 style="@style/DetailStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
