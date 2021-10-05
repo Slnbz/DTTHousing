@@ -20,13 +20,17 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
 
-
+    lateinit var list: List<House>
+    lateinit var adapt: HouseAdapter
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+       // adapt = HouseAdapter(this,)
+        binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
+        binding.recyclerviewHouses.adapter = adapt
 
         val button = findViewById<ImageButton>(R.id.infobutton)
         button.setOnClickListener{
@@ -34,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-
 
 
         HousesApi().getHouses().enqueue(object:Callback<List<House>>{
@@ -68,7 +71,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                return true
+
+                return false
             }
         })
         return true

@@ -79,4 +79,5 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
     }
 
 
+
 }
