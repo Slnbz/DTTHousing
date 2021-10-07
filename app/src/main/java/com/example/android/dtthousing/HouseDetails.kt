@@ -20,15 +20,15 @@ class HouseDetails : AppCompatActivity(){
 
         setContentView(R.layout.house_details)
 
-        val image : ImageView = findViewById(R.id.detailimage)
-        val bathroom : TextView = findViewById(R.id.detailamountofbath)
-        val housesize: TextView = findViewById(R.id.detailfloorarea)
         val price : TextView = findViewById(R.id.detailprice)
         val bedroom : TextView = findViewById(R.id.detailamountofbed)
+        val bathroom : TextView = findViewById(R.id.detailamountofbath)
+        val housesize: TextView = findViewById(R.id.detailfloorarea)
         val description :TextView = findViewById(R.id.description)
         val latitude : TextView = findViewById(R.id.latitudedetail)
         val longitude : TextView = findViewById(R.id.longitudedetail)
         val createdDate : TextView = findViewById(R.id.createdDate)
+        val image : ImageView = findViewById(R.id.detailimage)
 
         price.text = "$"+ houze.price.toString()
         bedroom.text = houze.bedrooms.toString()
