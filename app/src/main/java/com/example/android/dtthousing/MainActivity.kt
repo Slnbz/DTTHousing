@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        binding = ActivityMainBinding.inflate(layoutInflater).also {
+            setContentView(it.root)
+        }
        // adapt = HouseAdapter(this,)
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
         binding.recyclerviewHouses.adapter = adapt
