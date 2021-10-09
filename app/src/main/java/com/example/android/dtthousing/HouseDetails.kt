@@ -16,9 +16,11 @@ class HouseDetails : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val houze = intent.getSerializableExtra("house") as House
 
         setContentView(R.layout.house_details)
+
+        val houze = intent.getSerializableExtra("house") as House
+
 
         val price : TextView = findViewById(R.id.detailprice)
         val bedroom : TextView = findViewById(R.id.detailamountofbed)

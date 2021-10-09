@@ -20,19 +20,18 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
 
-    lateinit var list: List<House>
     lateinit var adapt: HouseAdapter
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
        // adapt = HouseAdapter(this,)
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
-        binding.recyclerviewHouses.adapter = adapt
+        // binding.recyclerviewHouses.adapter = adapt
 
         val button = findViewById<ImageButton>(R.id.infobutton)
         button.setOnClickListener{
@@ -59,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+  /*  override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.options_menu, menu)
 
         val item = menu?.findItem(R.id.search_action)
@@ -83,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return true
-    }
+    }*/
     private fun showHouses(houses: List<House>){
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)

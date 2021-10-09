@@ -70,7 +70,7 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
             .load(BASE_URL_FOR_IMAGE+houze.image)
             .into(holder.image.findViewById(R.id.houseImage))
 
-        holder.bind(houze)
+        //holder.bind(houze)
         holder.itemView.setOnClickListener { listener(houze) }
     }
 
