@@ -29,19 +29,7 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
         val bedroom : TextView = itemView.findViewById(R.id.amountofbed)
 
 
-        fun bind(item: House) {
-            val houze = houses[position]
-            price.text = "$"+ houze.price.toString()
-            bedroom.text = houze.bedrooms.toString()
-            bathroom.text = houze.bathrooms.toString()
-            housesize.text = houze.size.toString()
-            city.text = houze.city
-            zip.text = houze.zip
 
-            Glide.with(image.context)
-                .load(BASE_URL_FOR_IMAGE+houze.image)
-                .into(image.findViewById(R.id.detailimage))
-        }
         init {
             itemView.setOnClickListener{
             val position: Int = adapterPosition
@@ -70,7 +58,6 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
             .load(BASE_URL_FOR_IMAGE+houze.image)
             .into(holder.image.findViewById(R.id.houseImage))
 
-        //holder.bind(houze)
         holder.itemView.setOnClickListener { listener(houze) }
     }
 

@@ -26,7 +26,7 @@ class HouseDetails : AppCompatActivity(){
         val bedroom : TextView = findViewById(R.id.detailamountofbed)
         val bathroom : TextView = findViewById(R.id.detailamountofbath)
         val housesize: TextView = findViewById(R.id.detailfloorarea)
-        val description :TextView = findViewById(R.id.description)
+        val description :TextView = findViewById(R.id.detailsdescription)
         val latitude : TextView = findViewById(R.id.latitudedetail)
         val longitude : TextView = findViewById(R.id.longitudedetail)
         val createdDate : TextView = findViewById(R.id.createdDate)
