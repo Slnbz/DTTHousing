@@ -39,7 +39,6 @@
         android:layout_width="124dp"
         android:layout_height="73dp"
         android:layout_marginStart="@dimen/layout_margin"
-        android:layout_marginTop="16dp"
         android:contentDescription="@string/dttlogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/designanddev"

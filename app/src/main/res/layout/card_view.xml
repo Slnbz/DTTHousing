@@ -48,6 +48,7 @@
                     android:id="@+id/bed_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:tint="@color/medium"
                     android:contentDescription="@string/bed"
                     app:srcCompat="@drawable/ic_bed" />
 
@@ -63,6 +64,7 @@
                     android:id="@+id/bath_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:tint="@color/medium"
                     android:contentDescription="@string/bath"
                     app:srcCompat="@drawable/ic_bath" />
 
@@ -77,6 +79,7 @@
                     android:id="@+id/layer_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:tint="@color/medium"
                     android:contentDescription="@string/floor"
                     app:srcCompat="@drawable/ic_layers" />
 
@@ -91,6 +94,7 @@
                     android:id="@+id/location_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:tint="@color/medium"
                     android:contentDescription="@string/location"
                     app:srcCompat="@drawable/ic_location" />
 

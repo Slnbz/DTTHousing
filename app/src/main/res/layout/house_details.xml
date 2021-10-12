@@ -51,6 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    app:tint="@color/medium"
                     android:layout_toStartOf="@id/detailamountofbed"
                     android:contentDescription="@string/bed"
                     app:srcCompat="@drawable/ic_bed" />
@@ -70,6 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    app:tint="@color/medium"
                     android:layout_toStartOf="@id/detailamountofbath"
                     android:contentDescription="@string/bath"
                     app:srcCompat="@drawable/ic_bath" />
@@ -88,6 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    app:tint="@color/medium"
                     android:layout_toStartOf="@id/detailfloorarea"
                     android:contentDescription="@string/floor"
                     app:srcCompat="@drawable/ic_layers" />
@@ -106,6 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    app:tint="@color/medium"
                     android:layout_toStartOf="@id/detaillocationdistance"
                     android:contentDescription="@string/location"
                     app:srcCompat="@drawable/ic_location" />
