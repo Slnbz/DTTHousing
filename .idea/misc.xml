@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/drawable/border.xml" value="0.1375" />
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/drawable/ic_search_xml.xml" value="0.10729166666666666" />
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/font-v26/gotham.xml" value="0.12135416666666667" />
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/font/gotham.xml" value="0.12135416666666667" />
@@ -10,7 +11,7 @@
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/card_view.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/house_details.xml" value="0.10526315789473684" />
+        <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/house_details.xml" value="0.5" />
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/info_activity.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/info_activiy.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/Selen Bozbiyik/AndroidStudioProjects/DTTHousing/app/src/main/res/layout/ite_empty_dataset.xml" value="0.1" />

@@ -13,8 +13,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/light_gray"
-        app:cardCornerRadius="10dp">
+        android:background="@color/white"
+        android:layout_marginBottom="5dp"
+        android:elevation="10dp"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="5dp"
+        app:cardPreventCornerOverlap="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,6 +34,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                
                 android:contentDescription="@string/house_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +118,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
                 android:text="ZIP"
                 android:textColor="@color/medium"
                 app:layout_constraintStart_toEndOf="@+id/houseImage"
@@ -123,7 +129,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:text="City"
                 android:textColor="@color/medium"
                 app:layout_constraintStart_toEndOf="@+id/zip"
