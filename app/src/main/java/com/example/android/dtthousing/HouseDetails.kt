@@ -25,8 +25,9 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
 
         setContentView(R.layout.house_details)
 
-         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
-             mapFragment.getMapAsync(this)
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.mapView) as SupportMapFragment
+        mapFragment.getMapAsync(this)
 
         val permissionState = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
 
@@ -80,7 +81,6 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         myMap.addMarker(MarkerOptions().position(houselocation).title("Marker"))
         myMap.moveCamera(CameraUpdateFactory.newLatLng(houselocation))
     }
-
 
 }
 
