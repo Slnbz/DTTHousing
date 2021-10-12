@@ -74,7 +74,7 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         myMap = googleMap
 
         val houselocation = LatLng(houze.latitude, houze.longitude)
-        myMap.addMarker(MarkerOptions().position(houselocation).title("Marker"))
+        myMap.addMarker(MarkerOptions().position(houselocation).title(houze.zip +" "+ houze.city))
         myMap.moveCamera(CameraUpdateFactory.newLatLng(houselocation))
     }
 
