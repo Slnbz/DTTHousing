@@ -38,20 +38,20 @@
         android:fillViewport="true"
         >
 
-    <ImageView
-        android:id="@+id/emptysearch_image"
-        android:layout_width="wrap_content"
-        android:layout_height="450dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/search_state_empty">
+        <ImageView
+            android:id="@+id/emptysearch_image"
+            android:layout_width="wrap_content"
+            android:layout_height="450dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/search_state_empty">
 
-    </ImageView>
+        </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Body_HintStyle"
             android:text="No results found!\nPerhaps try another search?"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:layout_below="@id/emptysearch_image"
             android:layout_centerInParent="true"
             />
