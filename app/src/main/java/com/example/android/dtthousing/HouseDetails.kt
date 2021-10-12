@@ -28,7 +28,7 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
          val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
              mapFragment.getMapAsync(this)
 
-        val permissionState = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+        val permissionState = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
 
         val houze = intent.getSerializableExtra("house") as House
 
@@ -57,9 +57,9 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
             .into(image.findViewById(R.id.detailimage))
 
         if (permissionState != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_PERMISSIONS_REQUEST_CODE)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_PERMISSIONS_REQUEST_CODE)
         }
-        }
+    }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
