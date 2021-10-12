@@ -39,8 +39,6 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         val bathroom : TextView = findViewById(R.id.detailamountofbath)
         val housesize: TextView = findViewById(R.id.detailfloorarea)
         val description :TextView = findViewById(R.id.detailsdescription)
-        val latitude : TextView = findViewById(R.id.latitudedetail)
-        val longitude : TextView = findViewById(R.id.longitudedetail)
         val createdDate : TextView = findViewById(R.id.createdDate)
         val image : ImageView = findViewById(R.id.detailimage)
 
@@ -49,8 +47,6 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         bathroom.text = houze.bathrooms.toString()
         housesize.text = houze.size.toString()
         description.text = houze.description
-        latitude.text = houze.latitude.toString()
-        longitude.text = houze.longitude.toString()
         createdDate.text = houze.createdDate
 
         Glide.with(image.context)
