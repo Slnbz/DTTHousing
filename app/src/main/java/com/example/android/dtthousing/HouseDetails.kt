@@ -1,9 +1,12 @@
 package com.example.android.dtthousing
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.Debug.getLocation
+import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -11,13 +14,23 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import android.Manifest
 
 class HouseDetails : AppCompatActivity(){
-
+    companion object {
+        private const val REQUEST_PERMISSIONS_REQUEST_CODE = 1
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.house_details)
+
+        lateinit var myMap: GoogleMap
+
+         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
+             mapFragment.getMapAsync(OnMapReadyCallback {  })
+
+        val permissionState = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
 
         val houze = intent.getSerializableExtra("house") as House
 
@@ -45,29 +58,33 @@ class HouseDetails : AppCompatActivity(){
             .load(HouseAdapter.BASE_URL_FOR_IMAGE +houze.image)
             .into(image.findViewById(R.id.detailimage))
 
+        if (permissionState != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_PERMISSIONS_REQUEST_CODE)
+        }
+        fun onMapReady(googleMap: GoogleMap) {
+            myMap = googleMap
+
+            val houselocation = LatLng(houze.latitude, houze.longitude)
+            myMap.addMarker(MarkerOptions().position(houselocation).title("House"))
+            myMap.moveCamera(CameraUpdateFactory.newLatLng(houselocation))
+        }
+        }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_PERMISSIONS_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    getLocation()
+            }
         }
     }
 
 
-   /* private lateinit var myMap: GoogleMap*/
 
-   /* override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.house_details)
-
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.mapView) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+    }
 
 
 
-    }*/
 
-   /* override fun onMapReady(googleMap: GoogleMap) {
-        myMap = googleMap
 
-        val houselocation = LatLng(45.0, 65.0)
-        myMap.addMarker(MarkerOptions().position(houselocation).title("House"))
-        myMap.moveCamera(CameraUpdateFactory.newLatLng(houselocation))
-    }*/
 
