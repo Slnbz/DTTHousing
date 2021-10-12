@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/light_gray"
-    android:orientation="vertical">
+    android:background="@color/light_gray">
 
     <TextView
+        android:id="@+id/DTT_real"
         style="@style/Title01Style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dtt_real_estate" />
+        android:text="@string/dtt_real_estate"
+        android:layout_alignParentTop="true"/>
 
     <SearchView
         android:id="@+id/Search"
@@ -25,30 +26,43 @@
         android:clickable="true"
         android:closeIcon="@drawable/ic_close"
         android:focusable="true"
-        android:searchIcon="@drawable/ic_search_xml">
+        android:searchIcon="@drawable/ic_search_xml"
+        android:layout_below="@id/DTT_real">
 
     </SearchView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Search"
+        android:fillViewport="true"
+        >
 
     <ImageView
         android:id="@+id/emptysearch_image"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
+        android:layout_height="450dp"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/search_state_empty">
 
     </ImageView>
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:text="No results found!\nPerhaps try another search?"
-    android:layout_gravity="center_horizontal"
-    />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Body_HintStyle"
+            android:text="No results found!\nPerhaps try another search?"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@id/emptysearch_image"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
 
         <ImageButton
             android:id="@+id/homebutton"
@@ -74,4 +88,4 @@
             tools:ignore="RedundantDescriptionCheck,ImageContrastCheck" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
