@@ -148,18 +148,6 @@
                 android:layout_height="wrap_content"
                 android:text="Location" />
 
-            <TextView
-                android:id="@+id/longitudedetail"
-                style="@style/Body_HintStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/latitudedetail"
-                style="@style/Body_HintStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
 
             <fragment
                 xmlns:map="http://schemas.android.com/apk/res-auto"
