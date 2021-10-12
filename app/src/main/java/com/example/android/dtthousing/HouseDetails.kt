@@ -16,7 +16,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import android.Manifest
 
-class HouseDetails : AppCompatActivity(){
+class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
     companion object {
         private const val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     }
@@ -25,10 +25,8 @@ class HouseDetails : AppCompatActivity(){
 
         setContentView(R.layout.house_details)
 
-        lateinit var myMap: GoogleMap
-
          val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
-             mapFragment.getMapAsync(OnMapReadyCallback {  })
+             mapFragment.getMapAsync(this)
 
         val permissionState = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
 
@@ -61,13 +59,6 @@ class HouseDetails : AppCompatActivity(){
         if (permissionState != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_PERMISSIONS_REQUEST_CODE)
         }
-        fun onMapReady(googleMap: GoogleMap) {
-            myMap = googleMap
-
-            val houselocation = LatLng(houze.latitude, houze.longitude)
-            myMap.addMarker(MarkerOptions().position(houselocation).title("House"))
-            myMap.moveCamera(CameraUpdateFactory.newLatLng(houselocation))
-        }
         }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -79,9 +70,19 @@ class HouseDetails : AppCompatActivity(){
         }
     }
 
+    lateinit var myMap: GoogleMap
+    override fun onMapReady(googleMap: GoogleMap) {
+        val houze = intent.getSerializableExtra("house") as House
 
+        myMap = googleMap
 
+        val houselocation = LatLng(houze.latitude, houze.longitude)
+        myMap.addMarker(MarkerOptions().position(houselocation).title("Marker"))
+        myMap.moveCamera(CameraUpdateFactory.newLatLng(houselocation))
     }
+
+
+}
 
 
 
