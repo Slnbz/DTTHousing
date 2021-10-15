@@ -15,6 +15,7 @@ import com.example.android.dtthousing.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,15 +24,26 @@ class MainActivity : AppCompatActivity() {
     lateinit var adapt: HouseAdapter
     lateinit var binding: ActivityMainBinding
 
+/*    private var thesearchlist = mutableListOf<String>()
+    private var displaylist = mutableListOf<String>()*/
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
-       // adapt = HouseAdapter(this,)
+
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
-        // binding.recyclerviewHouses.adapter = adapt
+        //binding.recyclerviewHouses.adapter = adapt
+
+
+/*        val houze = intent.getSerializableExtra("house") as House
+
+        thesearchlist.add(houze.city)
+        thesearchlist.add(houze.zip)
+
+        displaylist.addAll(thesearchlist)*/
 
         val button = findViewById<ImageButton>(R.id.infobutton)
         button.setOnClickListener{
@@ -61,6 +73,7 @@ class MainActivity : AppCompatActivity() {
   /*  override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.options_menu, menu)
 
+        val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         val item = menu?.findItem(R.id.search_action)
         val searchView : SearchView = item?.actionView as SearchView
 
@@ -68,12 +81,27 @@ class MainActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText!!.isNotEmpty()){
+                    displaylist.clear()
+                    var search= newText.lowercase(Locale.getDefault())
 
-                return false
+                    for(houses in thesearchlist){
+                        if(houses.lowercase(Locale.getDefault()).contains(search)){
+                            displaylist.add(houses)
+                        }
+                        recyclerViewHouses.adapter!!.notifyDataSetChanged()
+                    }
+                }else{
+                    displaylist.clear()
+                    setContentView(R.layout.item_empty_dataset)
+                    recyclerViewHouses.adapter!!.notifyDataSetChanged()
+                }
+                return true
             }
         })
         return true
@@ -84,6 +112,8 @@ class MainActivity : AppCompatActivity() {
         return true
     }*/
     private fun showHouses(houses: List<House>){
+      //val houze = intent.getSerializableExtra("house") as House
+        //val sortedHouses = houses.sortedBy { houze.price }
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)
         recyclerViewHouses.adapter = HouseAdapter(houses){ House ->

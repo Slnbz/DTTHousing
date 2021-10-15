@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 
 class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit) : RecyclerView.Adapter<HouseAdapter.ViewHolder>() {
 
+
     companion object {
         const val BASE_URL_FOR_IMAGE =
                 "https://intern.docker-dev.d-tt.nl"
@@ -30,14 +31,6 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
 
 
 
-        init {
-            itemView.setOnClickListener{
-            val position: Int = adapterPosition
-            Toast.makeText(itemView.context,"you clicked on house # ${position + 1}", Toast.LENGTH_SHORT).show()
-
-            }
-
-        }
 }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HouseAdapter.ViewHolder {
         val v:View = LayoutInflater.from(parent.context).inflate(R.layout.card_view,parent,false)

@@ -159,6 +159,8 @@
                 xmlns:map="http://schemas.android.com/apk/res-auto"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:id="@+id/mapView"
+                android:clickable="true"
+                android:autoLink="web"
                 android:layout_margin="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -170,7 +172,8 @@
                 map:uiScrollGestures="false"
                 map:uiTiltGestures="true"
                 map:uiZoomControls="false"
-                map:uiZoomGestures="true"/>
+                map:uiZoomGestures="true"
+                android:focusable="true" />
 
 
         </LinearLayout>
