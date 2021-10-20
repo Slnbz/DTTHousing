@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 
 
 
-class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit) : RecyclerView.Adapter<HouseAdapter.ViewHolder>() {
+class HouseAdapter(val houses: List<House>, private val listener: (House) -> Unit) : RecyclerView.Adapter<HouseAdapter.ViewHolder>() {
 
 
     companion object {
@@ -57,7 +57,6 @@ class HouseAdapter(val houses: List<House>,private val listener: (House) -> Unit
     override fun getItemCount(): Int {
         return houses.size
     }
-
 
 
 }

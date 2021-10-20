@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var adapt: HouseAdapter
     lateinit var binding: ActivityMainBinding
 
-/*    private var thesearchlist = mutableListOf<String>()
-    private var displaylist = mutableListOf<String>()*/
+    private var thesearchlist = mutableListOf<String>()
+    private var displaylist = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +36,33 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
         //binding.recyclerviewHouses.adapter = adapt
+        val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
+
+        findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
+            android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText?.isNotEmpty() == true) {
+                    displaylist.clear()
+                    val search = newText.lowercase(Locale.getDefault())
+                    for (houses in thesearchlist) {
+                        if (houses.lowercase(Locale.getDefault()).contains(search)) {
+                            displaylist.add(houses)
+                        }
+                    }
+                    recyclerViewHouses.adapter!!.notifyDataSetChanged()
+                } else {
+                    displaylist.clear()
+                    setContentView(R.layout.item_empty_dataset)
+                    recyclerViewHouses.adapter!!.notifyDataSetChanged()
+
+                }
+                return true
+            }
+        })
+
 
 
 /*        val houze = intent.getSerializableExtra("house") as House
@@ -77,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         val item = menu?.findItem(R.id.search_action)
         val searchView : SearchView = item?.actionView as SearchView
 
-        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -94,12 +121,12 @@ class MainActivity : AppCompatActivity() {
                         if(houses.lowercase(Locale.getDefault()).contains(search)){
                             displaylist.add(houses)
                         }
-                        recyclerViewHouses.adapter!!.notifyDataSetChanged()
+
                     }
                 }else{
                     displaylist.clear()
                     setContentView(R.layout.item_empty_dataset)
-                    recyclerViewHouses.adapter!!.notifyDataSetChanged()
+
                 }
                 return true
             }
