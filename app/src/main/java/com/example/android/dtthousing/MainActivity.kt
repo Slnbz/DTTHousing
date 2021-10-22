@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         //binding.recyclerviewHouses.adapter = adapt
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
 
-        findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
+ /*       findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 return true
             }
-        })
+        })*/
 
 
 
@@ -139,11 +139,11 @@ class MainActivity : AppCompatActivity() {
         return true
     }*/
     private fun showHouses(houses: List<House>){
-      //val houze = intent.getSerializableExtra("house") as House
-        //val sortedHouses = houses.sortedBy { houze.price }
+
+        val sortedHouses = houses.sortedBy { it.price }
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)
-        recyclerViewHouses.adapter = HouseAdapter(houses){ House ->
+        recyclerViewHouses.adapter = HouseAdapter(sortedHouses){ House ->
             val houseDetailsActivityIntent = Intent(this, HouseDetails::class.java)
             houseDetailsActivityIntent.putExtra("house", House)
             startActivity(houseDetailsActivityIntent)
