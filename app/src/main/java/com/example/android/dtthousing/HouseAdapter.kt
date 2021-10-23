@@ -5,11 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-
+//Adapter class for getting the corresponding data and linking it to the views
 
 class HouseAdapter(val houses: List<House>, private val listener: (House) -> Unit) : RecyclerView.Adapter<HouseAdapter.ViewHolder>() {
 
@@ -28,6 +27,8 @@ class HouseAdapter(val houses: List<House>, private val listener: (House) -> Uni
         val zip : TextView = itemView.findViewById(R.id.zip)
         val price : TextView = itemView.findViewById(R.id.price)
         val bedroom : TextView = itemView.findViewById(R.id.amountofbed)
+
+
 
 
 
@@ -57,6 +58,7 @@ class HouseAdapter(val houses: List<House>, private val listener: (House) -> Uni
     override fun getItemCount(): Int {
         return houses.size
     }
+
 
 
 }

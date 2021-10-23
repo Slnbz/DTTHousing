@@ -1,31 +1,39 @@
 package com.example.android.dtthousing
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.Location.distanceBetween
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.inputmethod.EditorInfo
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.dtthousing.databinding.ActivityMainBinding
+import com.google.android.gms.location.LocationServices
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import com.google.android.gms.location.FusedLocationProviderClient
 
+// Main screen, Activity and features
 
 class MainActivity : AppCompatActivity() {
 
 
-    lateinit var adapt: HouseAdapter
+    //lateinit var adapt: HouseAdapter
     lateinit var binding: ActivityMainBinding
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    //private var thesearchlist = mutableListOf<String>()
+    //private var displaylist = mutableListOf<String>()
 
-    private var thesearchlist = mutableListOf<String>()
-    private var displaylist = mutableListOf<String>()
+    val maindistance : TextView = findViewById(R.id.locationdistance)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +43,33 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
-        //binding.recyclerviewHouses.adapter = adapt
-        val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
+
+        var lastLatitude = 0.0
+        var lastLongitude = 0.0
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        )
+
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location : Location? ->
+                lastLatitude = location?.latitude!!.toDouble()
+                lastLongitude = location?.longitude!!.toDouble()
+            }
+
+        val houze = intent.getSerializableExtra("house") as House
+        val results = FloatArray(1)
+        distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
+        maindistance.text = results.toString()
+
+        //attempted search function, status: not working, therefore commented out including related variables
 
  /*       findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
@@ -63,14 +96,7 @@ class MainActivity : AppCompatActivity() {
             }
         })*/
 
-
-
-/*        val houze = intent.getSerializableExtra("house") as House
-
-        thesearchlist.add(houze.city)
-        thesearchlist.add(houze.zip)
-
-        displaylist.addAll(thesearchlist)*/
+        //To get to the "About" screen with the info button
 
         val button = findViewById<ImageButton>(R.id.infobutton)
         button.setOnClickListener{
@@ -79,6 +105,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
+        //To get the houses from API and display them on the main screen
 
         HousesApi().getHouses().enqueue(object:Callback<List<House>>{
             override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
@@ -97,47 +125,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-  /*  override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.options_menu, menu)
+    //display function that links the data and views together
 
-        val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
-        val item = menu?.findItem(R.id.search_action)
-        val searchView : SearchView = item?.actionView as SearchView
-
-
-
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText!!.isNotEmpty()){
-                    displaylist.clear()
-                    var search= newText.lowercase(Locale.getDefault())
-
-                    for(houses in thesearchlist){
-                        if(houses.lowercase(Locale.getDefault()).contains(search)){
-                            displaylist.add(houses)
-                        }
-
-                    }
-                }else{
-                    displaylist.clear()
-                    setContentView(R.layout.item_empty_dataset)
-
-                }
-                return true
-            }
-        })
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        return true
-    }*/
     private fun showHouses(houses: List<House>){
 
         val sortedHouses = houses.sortedBy { it.price }
@@ -149,10 +138,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(houseDetailsActivityIntent)
         }
     }
-
-
-
-
-
 
 }
