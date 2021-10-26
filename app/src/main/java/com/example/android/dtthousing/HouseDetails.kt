@@ -35,11 +35,6 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         var lastLongitude = 0.0
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                lastLatitude = location?.latitude!!.toDouble()
-                lastLongitude = location?.longitude!!.toDouble()
-            }
 
 
         val mapFragment = supportFragmentManager
@@ -61,6 +56,11 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
 
 
         val results = FloatArray(1)
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location : Location? ->
+                lastLatitude = location?.latitude!!.toDouble()
+                lastLongitude = location?.longitude!!.toDouble()
+            }
         distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
 
         price.text = "$"+ houze.price.toString()
@@ -74,7 +74,8 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
             .load(HouseAdapter.BASE_URL_FOR_IMAGE +houze.image)
             .into(image.findViewById(R.id.detailimage))
 
-        distance.text = results[0].toString()
+        // Dividing by 1000 to convert from metres to Kilometres
+        distance.text = "${results[0].div(1000f)}km"
 
 
         if (permissionState != PackageManager.PERMISSION_GRANTED) {

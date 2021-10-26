@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     //private var thesearchlist = mutableListOf<String>()
     //private var displaylist = mutableListOf<String>()
 
-    val maindistance : TextView = findViewById(R.id.locationdistance)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,25 +49,8 @@ class MainActivity : AppCompatActivity() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        )
+        val maindistance : TextView = findViewById(R.id.locationdistance)
 
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                lastLatitude = location?.latitude!!.toDouble()
-                lastLongitude = location?.longitude!!.toDouble()
-            }
-
-        val houze = intent.getSerializableExtra("house") as House
-        val results = FloatArray(1)
-        distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
-        maindistance.text = results.toString()
 
         //attempted search function, status: not working, therefore commented out including related variables
 
@@ -122,6 +105,25 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        )
+
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location : Location? ->
+                    lastLatitude = location?.latitude!!.toDouble()
+                    lastLongitude = location?.longitude!!.toDouble()
+                }
+
+        val houze = intent.getSerializableExtra("house") as House
+        val results = FloatArray(1)
+        distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
+        maindistance.text = results.toString()
 
     }
 
