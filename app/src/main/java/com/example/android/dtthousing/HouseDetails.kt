@@ -23,12 +23,11 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         private const val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.house_details)
 
-
+        //map fragment setup, the location on layout
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapView) as SupportMapFragment
@@ -36,7 +35,9 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
 
         val permissionState = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
 
-        val houze = intent.getSerializableExtra("house") as House
+        val houze = intent.getSerializableExtra("house") as House //getting the tags from House.class
+
+        //definition of all views and their location on layout file
 
         val price : TextView = findViewById(R.id.detailprice)
         val bedroom : TextView = findViewById(R.id.detailamountofbed)
@@ -47,6 +48,7 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         val image : ImageView = findViewById(R.id.detailimage)
         val distance : TextView = findViewById(R.id.detaillocationdistance)
 
+        //pairing of the data and the previously defined variables
 
         price.text = "$"+ houze.price.toString()
         bedroom.text = houze.bedrooms.toString()
@@ -62,10 +64,13 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         distance.text = houze.distanceFromCurrentLocation
 
 
+        //permission of access state for fine location
+
         if (permissionState != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_PERMISSIONS_REQUEST_CODE)
         }
     }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -75,6 +80,8 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
             }
         }
     }
+
+    //setup of the map fragment & its features
 
     lateinit var myMap: GoogleMap
     override fun onMapReady(googleMap: GoogleMap) {

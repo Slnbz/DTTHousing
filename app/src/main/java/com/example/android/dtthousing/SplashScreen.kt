@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 
+//splash screen to show the DTT logo
+
 @Suppress("DEPRECATION")
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

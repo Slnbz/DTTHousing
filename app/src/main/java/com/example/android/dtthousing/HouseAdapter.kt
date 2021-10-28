@@ -19,6 +19,7 @@ class HouseAdapter(val houses: List<House>, private val listener: (House) -> Uni
     }
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
+        //definition of all views and their location on layout file
 
         val image : ImageView = itemView.findViewById(R.id.houseImage)
         val bathroom : TextView = itemView.findViewById(R.id.amountofbath)
@@ -29,18 +30,19 @@ class HouseAdapter(val houses: List<House>, private val listener: (House) -> Uni
         val bedroom : TextView = itemView.findViewById(R.id.amountofbed)
         val maindistance : TextView = itemView.findViewById(R.id.locationdistance)
 
+    }
 
+    //definition and linking of where the data is supposed to be and to create the single piece of the recycler view (one card of the RV)
 
-
-}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HouseAdapter.ViewHolder {
         val v:View = LayoutInflater.from(parent.context).inflate(R.layout.card_view,parent,false)
         return ViewHolder(v)
     }
 
+    //pairing of the data and the previously defined variables
+
     override fun onBindViewHolder(holder: HouseAdapter.ViewHolder, position: Int) {
         val houze = houses[position]
-
 
         holder.price.text = "$"+ houze.price.toString()
         holder.bedroom.text = houze.bedrooms.toString()

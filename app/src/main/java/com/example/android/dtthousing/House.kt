@@ -2,6 +2,8 @@ package com.example.android.dtthousing
 
 import java.io.Serializable
 
+//class for definition of the objects to link to the data
+
 data class House (
     val id: Int,
     val image: String,

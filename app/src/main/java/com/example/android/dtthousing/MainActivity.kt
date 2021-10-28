@@ -26,19 +26,15 @@ import com.google.android.gms.location.FusedLocationProviderClient
 
 class MainActivity : AppCompatActivity() {
 
-
-    //lateinit var adapt: HouseAdapter
     lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    //lateinit var adapt: HouseAdapter
     //private var thesearchlist = mutableListOf<String>()
     //private var displaylist = mutableListOf<String>()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
@@ -50,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         var lastLongitude = 0.0
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -104,6 +99,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        //calculation of the distance between houses and current location
+
         val houze = intent.getSerializableExtra("house") as? House
         val results = FloatArray(1)
         if (houze != null) {
@@ -111,6 +108,8 @@ class MainActivity : AppCompatActivity() {
         }
         // Dividing by 1000 to convert from metres to Kilometres
         houze?.distanceFromCurrentLocation = "${results[0].div(1000f)}km"
+
+
 
         //To get the houses from API and display them on the main screen
 
@@ -125,16 +124,10 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<List<House>>, t: Throwable) {
                 Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
             }
-
         })
-
-
-
-
-
     }
 
-    //display function that links the data and views together
+    //display function that links the data and views together and sorts the list
 
     private fun showHouses(houses: List<House>){
         val sortedHouses = houses.sortedBy { it.price }
