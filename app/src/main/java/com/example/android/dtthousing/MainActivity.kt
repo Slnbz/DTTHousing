@@ -41,20 +41,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Request_Location)
 
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
 
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
-
-
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
-        fun getLastKnownLocation() {
+        /*fun getLastKnownLocation() {
             if (ActivityCompat.checkSelfPermission(
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
@@ -72,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     lastLongitude = location?.longitude!!.toDouble()
                 }
 
-        }
+        }*/
         //attempted search function, status: not working, therefore commented out including related variables
 
  /*       findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
@@ -114,9 +111,10 @@ class MainActivity : AppCompatActivity() {
 
         HousesApi().getHouses().enqueue(object:Callback<List<House>>{
             override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
+                getLastKnownLocation()
+
                 val housedetails = response.body()
                 housedetails?.let {
-                    getLastKnownLocation()
 
                     //calculation of the distance between houses and current location
                     it.forEach { house ->
@@ -142,23 +140,29 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    //display function that links the data and views together and sorts the list
-
-    private fun showHouses(houses: List<House>){
-        val sortedHouses = houses.sortedBy { it.price }
-        val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
-        recyclerViewHouses.layoutManager = LinearLayoutManager(this)
-        recyclerViewHouses.adapter = HouseAdapter(sortedHouses){ House ->
-            val houseDetailsActivityIntent = Intent(this, HouseDetails::class.java)
-            houseDetailsActivityIntent.putExtra("house", House)
-            startActivity(houseDetailsActivityIntent)
+    private fun getLastKnownLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    lastLatitude = location?.latitude!!.toDouble()
+                    lastLongitude = location?.longitude!!.toDouble()
+                }
+            return
         }
     }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
 
         if (requestCode == Request_Location) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLocation()
+                getLastKnownLocation()
             }else{
                 Toast.makeText(this, "This permission is needed for the app to work correctly.", Toast.LENGTH_LONG).show()
                 Handler().postDelayed({
@@ -172,5 +176,19 @@ class MainActivity : AppCompatActivity() {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
     }
+
+    //display function that links the data and views together and sorts the list
+
+    private fun showHouses(houses: List<House>){
+        val sortedHouses = houses.sortedBy { it.price }
+        val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
+        recyclerViewHouses.layoutManager = LinearLayoutManager(this)
+        recyclerViewHouses.adapter = HouseAdapter(sortedHouses){ House ->
+            val houseDetailsActivityIntent = Intent(this, HouseDetails::class.java)
+            houseDetailsActivityIntent.putExtra("house", House)
+            startActivity(houseDetailsActivityIntent)
+        }
+    }
+
 
 }
