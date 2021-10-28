@@ -26,7 +26,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     //lateinit var adapt: HouseAdapter
