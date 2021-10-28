@@ -99,18 +99,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-       /* //calculation of the distance between houses and current location
-
-        val houze = intent.getSerializableExtra("house") as? House
-        val results = FloatArray(1)
-        if (houze != null) {
-            distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
-        }
-        // Dividing by 1000 to convert from metres to Kilometres
-        houze?.distanceFromCurrentLocation = "${results[0].div(1000f)}km"*/
-
-
-
         //To get the houses from API and display them on the main screen
 
         HousesApi().getHouses().enqueue(object:Callback<List<House>>{
