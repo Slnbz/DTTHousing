@@ -15,26 +15,19 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import android.Manifest
-import android.location.Location
-import android.location.Location.distanceBetween
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+
 
 
 class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
     companion object {
         private const val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     }
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.house_details)
 
-        var lastLatitude = 0.0
-        var lastLongitude = 0.0
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
         val mapFragment = supportFragmentManager
@@ -55,14 +48,6 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
         val distance : TextView = findViewById(R.id.detaillocationdistance)
 
 
-        val results = FloatArray(1)
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                lastLatitude = location?.latitude!!.toDouble()
-                lastLongitude = location?.longitude!!.toDouble()
-            }
-        distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
-
         price.text = "$"+ houze.price.toString()
         bedroom.text = houze.bedrooms.toString()
         bathroom.text = houze.bathrooms.toString()
@@ -74,8 +59,7 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
             .load(HouseAdapter.BASE_URL_FOR_IMAGE +houze.image)
             .into(image.findViewById(R.id.detailimage))
 
-        // Dividing by 1000 to convert from metres to Kilometres
-        distance.text = "${results[0].div(1000f)}km"
+        distance.text = houze.distanceFromCurrentLocation
 
 
         if (permissionState != PackageManager.PERMISSION_GRANTED) {

@@ -15,4 +15,4 @@ data class House (
     val latitude: Double,
     val longitude: Double,
     val createdDate: String,
-    var distanceFromCurrentLocation: Float = 0.0f) : Serializable
+    var distanceFromCurrentLocation: String) : Serializable

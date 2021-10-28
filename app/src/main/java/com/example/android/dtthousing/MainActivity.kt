@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
@@ -49,7 +51,6 @@ class MainActivity : AppCompatActivity() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        val maindistance : TextView = findViewById(R.id.locationdistance)
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                     lastLatitude = location?.latitude!!.toDouble()
                     lastLongitude = location?.longitude!!.toDouble()
                 }
+
 
         //attempted search function, status: not working, therefore commented out including related variables
 
@@ -102,6 +104,13 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        val houze = intent.getSerializableExtra("house") as? House
+        val results = FloatArray(1)
+        if (houze != null) {
+            distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
+        }
+        // Dividing by 1000 to convert from metres to Kilometres
+        houze?.distanceFromCurrentLocation = "${results[0].div(1000f)}km"
 
         //To get the houses from API and display them on the main screen
 
@@ -121,9 +130,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val houze = intent.getSerializableExtra("house") as House
-        val results = FloatArray(1)
-        distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
+
 
     }
 
