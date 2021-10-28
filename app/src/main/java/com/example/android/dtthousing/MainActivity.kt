@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     val Request_Location = 1
+
+    var lastLatitude = 0.0
+    var lastLongitude = 0.0
     //lateinit var adapt: HouseAdapter
     //private var thesearchlist = mutableListOf<String>()
     //private var displaylist = mutableListOf<String>()
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Request_Location)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
@@ -46,27 +49,30 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
 
-        var lastLatitude = 0.0
-        var lastLongitude = 0.0
+
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        )
 
+        fun getLastKnownLocation() {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Request_Location)
+                return
+            }
             fusedLocationClient.lastLocation
-                .addOnSuccessListener { location : Location? ->
+                .addOnSuccessListener { location: Location? ->
                     lastLatitude = location?.latitude!!.toDouble()
                     lastLongitude = location?.longitude!!.toDouble()
                 }
 
-
+        }
         //attempted search function, status: not working, therefore commented out including related variables
 
  /*       findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
@@ -110,9 +116,11 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
                 val housedetails = response.body()
                 housedetails?.let {
+                    getLastKnownLocation()
 
                     //calculation of the distance between houses and current location
                     it.forEach { house ->
+
                         val results = FloatArray(1)
                         distanceBetween(
                             lastLatitude,
@@ -149,7 +157,7 @@ class MainActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
 
         if (requestCode == Request_Location) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLocation()
             }else{
                 Toast.makeText(this, "This permission is needed for the app to work correctly.", Toast.LENGTH_LONG).show()
