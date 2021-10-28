@@ -7,6 +7,7 @@ import android.location.Location
 import android.location.Location.distanceBetween
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import com.google.android.gms.location.FusedLocationProviderClient
+import androidx.constraintlayout.motion.widget.Debug.getLocation
 
 // Main screen, Activity and features
 
@@ -28,13 +30,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
+    val Request_Location = 1
     //lateinit var adapt: HouseAdapter
     //private var thesearchlist = mutableListOf<String>()
     //private var displaylist = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Request_Location)
 
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
@@ -99,6 +103,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
         //To get the houses from API and display them on the main screen
 
         HousesApi().getHouses().enqueue(object:Callback<List<House>>{
@@ -139,6 +144,24 @@ class MainActivity : AppCompatActivity() {
             val houseDetailsActivityIntent = Intent(this, HouseDetails::class.java)
             houseDetailsActivityIntent.putExtra("house", House)
             startActivity(houseDetailsActivityIntent)
+        }
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+
+        if (requestCode == Request_Location) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLocation()
+            }else{
+                Toast.makeText(this, "This permission is needed for the app to work correctly.", Toast.LENGTH_LONG).show()
+                Handler().postDelayed({
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        Request_Location
+                    )
+                }, 3501)
+
+            }
+        }else{
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
     }
 

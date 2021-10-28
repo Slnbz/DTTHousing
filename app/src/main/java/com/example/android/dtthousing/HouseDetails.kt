@@ -15,13 +15,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import android.Manifest
-
+import android.os.Handler
+import android.widget.Toast
 
 
 class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
-    companion object {
-        private const val REQUEST_PERMISSIONS_REQUEST_CODE = 1
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +31,6 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
             .findFragmentById(R.id.mapView) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        val permissionState = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
 
         val houze = intent.getSerializableExtra("house") as House //getting the tags from House.class
 
@@ -63,22 +60,6 @@ class HouseDetails : AppCompatActivity(), OnMapReadyCallback{
 
         distance.text = houze.distanceFromCurrentLocation
 
-
-        //permission of access state for fine location
-
-        if (permissionState != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_PERMISSIONS_REQUEST_CODE)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQUEST_PERMISSIONS_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    getLocation()
-            }
-        }
     }
 
     //setup of the map fragment & its features
