@@ -28,7 +28,7 @@ class HouseAdapter(val houses: List<House>, private val listener: (House) -> Uni
         val zip : TextView = itemView.findViewById(R.id.zip)
         val price : TextView = itemView.findViewById(R.id.price)
         val bedroom : TextView = itemView.findViewById(R.id.amountofbed)
-        val maindistance : TextView = itemView.findViewById(R.id.locationdistance)
+        val maindistance : TextView = itemView.findViewById(R.id.cardlocationdistance)
 
     }
 

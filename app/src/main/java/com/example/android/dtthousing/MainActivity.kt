@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        //calculation of the distance between houses and current location
+       /* //calculation of the distance between houses and current location
 
         val houze = intent.getSerializableExtra("house") as? House
         val results = FloatArray(1)
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             distanceBetween(lastLatitude, lastLongitude, houze.latitude, houze.longitude, results)
         }
         // Dividing by 1000 to convert from metres to Kilometres
-        houze?.distanceFromCurrentLocation = "${results[0].div(1000f)}km"
+        houze?.distanceFromCurrentLocation = "${results[0].div(1000f)}km"*/
 
 
 
@@ -117,6 +117,20 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
                 val housedetails = response.body()
                 housedetails?.let {
+
+                    //calculation of the distance between houses and current location
+                    it.forEach { house ->
+                        val results = FloatArray(1)
+                        distanceBetween(
+                            lastLatitude,
+                            lastLongitude,
+                            house.latitude,
+                            house.longitude,
+                            results
+                        )
+                        // Dividing by 1000 to convert from metres to Kilometres
+                        house.distanceFromCurrentLocation = "${results[0].div(1000)}km"
+                    }
                     showHouses(it)
                 }
             }

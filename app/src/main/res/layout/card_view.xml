@@ -109,7 +109,7 @@
                     app:srcCompat="@drawable/ic_location" />
 
                 <TextView
-                    android:id="@+id/locationdistance"
+                    android:id="@+id/cardlocationdistance"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
