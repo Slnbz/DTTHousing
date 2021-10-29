@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     val Request_Location = 1
 
-    var lastLatitude = 0.0
-    var lastLongitude = 0.0
+    var lastLatitude : Double = 0.0
+    var lastLongitude : Double = 0.0
     //lateinit var adapt: HouseAdapter
     //private var thesearchlist = mutableListOf<String>()
     //private var displaylist = mutableListOf<String>()
@@ -42,7 +42,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Request_Location)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            Request_Location
+        )
 
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         //attempted search function, status: not working, therefore commented out including related variables
 
- /*       findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
+        /*       findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
@@ -82,46 +86,17 @@ class MainActivity : AppCompatActivity() {
         //To get to the "About" screen with the info button
 
         val button = findViewById<ImageButton>(R.id.infobutton)
-        button.setOnClickListener{
+        button.setOnClickListener {
             val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
 
         }
 
-
-        //To get the houses from API and display them on the main screen
-
-        HousesApi().getHouses().enqueue(object:Callback<List<House>>{
-            override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
-
-
-                val housedetails = response.body()
-                housedetails?.let {
-
-                    //calculation of the distance between houses and current location
-                    it.forEach { house ->
-
-                        val results = FloatArray(1)
-                        distanceBetween(
-                            lastLatitude,
-                            lastLongitude,
-                            house.latitude,
-                            house.longitude,
-                            results
-                        )
-                        Log.d("wronglat?", "getLastKnownLocation: ${lastLatitude}")
-                        Log.d("wronglong?", "getLastKnownLocation: ${lastLongitude}")
-                        // Dividing by 1000 to convert from metres to Kilometres
-                        house.distanceFromCurrentLocation = "${results[0].div(1000)}km"
-                    }
-                    showHouses(it)
-                }
-            }
-
-            override fun onFailure(call: Call<List<House>>, t: Throwable) {
-                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-            }
-        })
+        if (lastLatitude == 0.0 && lastLongitude == 0.0) {
+            getLastKnownLocation()
+        } else {
+            listHouses()
+        }
     }
 
     private fun getLastKnownLocation() {
@@ -142,7 +117,6 @@ class MainActivity : AppCompatActivity() {
                     Log.d("********", "getLastKnownLocation: ${location?.longitude}")
 
                 }
-            return
         }
     }
 
@@ -166,6 +140,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun listHouses() {
+        //To get the houses from API and display them on the main screen
+
+        HousesApi().getHouses().enqueue(object : Callback<List<House>> {
+            override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
+
+                val housedetails = response.body()
+                housedetails?.let {
+
+                    //calculation of the distance between houses and current location
+                    it.forEach { house ->
+
+                        val results = FloatArray(1)
+                        distanceBetween(
+                            lastLatitude,
+                            lastLongitude,
+                            house.latitude,
+                            house.longitude,
+                            results
+                        )
+                        // Dividing by 1000 to convert from metres to Kilometres
+                        house.distanceFromCurrentLocation = "${results[0].div(1000)}km"
+                    }
+                    Log.d("wronglat?", "getLastKnownLocation: ${lastLatitude}")
+                    Log.d("wronglong?", "getLastKnownLocation: ${lastLongitude}")
+                    showHouses(it)
+                }
+            }
+
+            override fun onFailure(call: Call<List<House>>, t: Throwable) {
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+            }
+        })
+    }
     //display function that links the data and views together and sorts the list
 
     private fun showHouses(houses: List<House>){
