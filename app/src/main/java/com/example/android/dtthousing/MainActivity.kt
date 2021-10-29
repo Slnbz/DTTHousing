@@ -8,11 +8,10 @@ import android.location.Location.distanceBetween
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,9 +20,11 @@ import com.google.android.gms.location.LocationServices
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 import com.google.android.gms.location.FusedLocationProviderClient
-import androidx.constraintlayout.motion.widget.Debug.getLocation
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
+//imports below for the attempted search function
+import androidx.appcompat.widget.SearchView
 
 // Main screen, Activity and features
 
@@ -31,10 +32,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    val Request_Location = 1
+    lateinit var swipeContainer: SwipeRefreshLayout
 
-    var lastLatitude : Double = 0.0
-    var lastLongitude : Double = 0.0
+
+    private val REQUEST_LOCATION = 1
+
+    var lastLatitude = 0.0
+    var lastLongitude = 0.0
     //lateinit var adapt: HouseAdapter
     //private var thesearchlist = mutableListOf<String>()
     //private var displaylist = mutableListOf<String>()
@@ -42,10 +46,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //immediate permission request
+
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            Request_Location
+            REQUEST_LOCATION
         )
 
         binding = ActivityMainBinding.inflate(layoutInflater).also {
@@ -94,9 +100,17 @@ class MainActivity : AppCompatActivity() {
 
         if (lastLatitude == 0.0 && lastLongitude == 0.0) {
             getLastKnownLocation()
-        } else {
-            listHouses()
         }
+
+        swipeContainer = findViewById(R.id.swipeRefresh)
+
+        // Setup refresh listener which triggers update of the data (created for location specifically)
+
+        swipeContainer.setOnRefreshListener {
+            getLastKnownLocation()
+            swipeContainer.isRefreshing = false
+        }
+
     }
 
     private fun getLastKnownLocation() {
@@ -111,26 +125,30 @@ class MainActivity : AppCompatActivity() {
         ) {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                    lastLatitude = location?.latitude!!.toDouble()
-                    lastLongitude = location?.longitude!!.toDouble()
-                    Log.d("********", "getLastKnownLocation: ${location?.latitude}")
-                    Log.d("********", "getLastKnownLocation: ${location?.longitude}")
 
+                        lastLatitude = location?.latitude!!
+                        lastLongitude = location?.longitude!!
+
+                        //to check values during programming
+                        Log.d("********", "getLastKnownLocation: ${location.latitude}")
+                        Log.d("********", "getLastKnownLocation: ${location.longitude}")
                 }
         }
+        listHouses()
     }
 
+    //permission results check and if not given display a warning and another request
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
 
-        if (requestCode == Request_Location) {
+        if (requestCode == REQUEST_LOCATION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastKnownLocation()
 
             }else{
                 Toast.makeText(this, "This permission is needed for the app to work correctly.", Toast.LENGTH_LONG).show()
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                        Request_Location
+                        REQUEST_LOCATION
                     )
                 }, 3501)
 
@@ -161,8 +179,10 @@ class MainActivity : AppCompatActivity() {
                             results
                         )
                         // Dividing by 1000 to convert from metres to Kilometres
-                        house.distanceFromCurrentLocation = "${results[0].div(1000)}km"
+                        val distance = results[0].div(1000f)
+                        house.distanceFromCurrentLocation = "%.2f".format(distance) + "km"
                     }
+                    //to check values during programming
                     Log.d("wronglat?", "getLastKnownLocation: ${lastLatitude}")
                     Log.d("wronglong?", "getLastKnownLocation: ${lastLongitude}")
                     showHouses(it)
