@@ -8,6 +8,7 @@ import android.location.Location.distanceBetween
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -51,25 +52,6 @@ class MainActivity : AppCompatActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
-        /*fun getLastKnownLocation() {
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), Request_Location)
-                return
-            }
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    lastLatitude = location?.latitude!!.toDouble()
-                    lastLongitude = location?.longitude!!.toDouble()
-                }
-
-        }*/
         //attempted search function, status: not working, therefore commented out including related variables
 
  /*       findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
@@ -111,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         HousesApi().getHouses().enqueue(object:Callback<List<House>>{
             override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
-                getLastKnownLocation()
+
 
                 val housedetails = response.body()
                 housedetails?.let {
@@ -127,6 +109,8 @@ class MainActivity : AppCompatActivity() {
                             house.longitude,
                             results
                         )
+                        Log.d("wronglat?", "getLastKnownLocation: ${lastLatitude}")
+                        Log.d("wronglong?", "getLastKnownLocation: ${lastLongitude}")
                         // Dividing by 1000 to convert from metres to Kilometres
                         house.distanceFromCurrentLocation = "${results[0].div(1000)}km"
                     }
@@ -141,18 +125,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getLastKnownLocation() {
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
+            ) == PackageManager.PERMISSION_GRANTED
         ) {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     lastLatitude = location?.latitude!!.toDouble()
                     lastLongitude = location?.longitude!!.toDouble()
+                    Log.d("********", "getLastKnownLocation: ${location?.latitude}")
+                    Log.d("********", "getLastKnownLocation: ${location?.longitude}")
+
                 }
             return
         }
@@ -163,6 +151,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == Request_Location) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastKnownLocation()
+
             }else{
                 Toast.makeText(this, "This permission is needed for the app to work correctly.", Toast.LENGTH_LONG).show()
                 Handler().postDelayed({
