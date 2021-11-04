@@ -6,7 +6,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/row_view"
+    android:id="@+id/rowView"
     android:layout_width="match_parent"
     android:background="@color/light_gray"
     android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/zip">
 
                 <ImageView
-                    android:id="@+id/bed_image"
+                    android:id="@+id/bedImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:tint="@color/medium"
@@ -63,7 +63,7 @@
                     app:srcCompat="@drawable/ic_bed" />
 
                 <TextView
-                    android:id="@+id/amountofbed"
+                    android:id="@+id/amountOfBed"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                     android:text="@string/amount_of_bed" />
 
                 <ImageView
-                    android:id="@+id/bath_image"
+                    android:id="@+id/bathImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:tint="@color/medium"
@@ -79,7 +79,7 @@
                     app:srcCompat="@drawable/ic_bath" />
 
                 <TextView
-                    android:id="@+id/amountofbath"
+                    android:id="@+id/amountOfBath"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,14 +94,14 @@
                     app:srcCompat="@drawable/ic_layers" />
 
                 <TextView
-                    android:id="@+id/floorarea"
+                    android:id="@+id/floorArea"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/floor_m2" />
 
                 <ImageView
-                    android:id="@+id/location_image"
+                    android:id="@+id/locationImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:tint="@color/medium"
@@ -109,7 +109,7 @@
                     app:srcCompat="@drawable/ic_location" />
 
                 <TextView
-                    android:id="@+id/cardlocationdistance"
+                    android:id="@+id/cardLocationDistance"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="ZIP"
+                android:text="@string/dummyZip"
                 android:textColor="@color/medium"
                 app:layout_constraintStart_toEndOf="@+id/houseImage"
                 app:layout_constraintTop_toBottomOf="@+id/price"
@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="City"
+                android:text="@string/dummyCity"
                 android:textColor="@color/medium"
                 app:layout_constraintStart_toEndOf="@+id/zip"
                 app:layout_constraintTop_toBottomOf="@+id/price"

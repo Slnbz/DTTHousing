@@ -14,5 +14,5 @@
         android:id="@+id/infoActiviy"
         android:name="com.example.android.dtthousing.InfoActiviy"
         android:label="info_activiy"
-        tools:layout="@layout/info_activity" />
+        tools:layout="@layout/activity_info" />
 </navigation>

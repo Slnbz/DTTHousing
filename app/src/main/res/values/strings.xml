@@ -20,7 +20,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="design_and_development">Design and Development</string>
     <string name="by_dtt">by DTT</string>
-    <string name="dttlogo">dttlogo</string>
+    <string name="dttLogo">dttlogo</string>
     <string name="dtt_website">d-tt.nl</string>
+    <string name="locationTitle">Location</string>
+    <string name="descriptionTitle">Description</string>
+    <string name="dummyPrice">$45,000</string>
+    <string name="dummyCity">City</string>
+    <string name="dummyZip">ZIP</string>
+    <string name="searchEmptyWarning">No results found!\nPerhaps try another search?</string>
+    <string name="emptySearchImageContext">empty search image</string>
+    <string name="priceString">$ %d</string>
+
 
 </resources>

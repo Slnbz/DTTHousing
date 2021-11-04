@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -32,14 +34,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    lateinit var swipeContainer: SwipeRefreshLayout
+    private lateinit var swipeContainer: SwipeRefreshLayout
 
 
-    private val REQUEST_LOCATION = 1
+    private val requestLocation = 1
 
     var lastLatitude = 0.0
     var lastLongitude = 0.0
-    //lateinit var adapt: HouseAdapter
+    private var warning : String = "Warning: This permission is needed for the app to work correctly."
+    //private lateinit var adapt: HouseAdapter
     //private var thesearchlist = mutableListOf<String>()
     //private var displaylist = mutableListOf<String>()
 
@@ -47,15 +50,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //immediate permission request
-
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            REQUEST_LOCATION
+            requestLocation
         )
 
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
+
         }
 
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
@@ -64,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         //attempted search function, status: not working, therefore commented out including related variables
 
-        /*       findViewById<android.widget.SearchView>(R.id.Search).setOnQueryTextListener(object :
+        /*       findViewById<android.widget.SearchView>(R.id.search).setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
@@ -91,11 +94,10 @@ class MainActivity : AppCompatActivity() {
 
         //To get to the "About" screen with the info button
 
-        val button = findViewById<ImageButton>(R.id.infobutton)
+        val button = findViewById<ImageButton>(R.id.infoButton)
         button.setOnClickListener {
             val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
-
         }
 
         if (lastLatitude == 0.0 && lastLongitude == 0.0) {
@@ -103,18 +105,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         swipeContainer = findViewById(R.id.swipeRefresh)
-
         // Setup refresh listener which triggers update of the data (created for location specifically)
-
         swipeContainer.setOnRefreshListener {
             getLastKnownLocation()
             swipeContainer.isRefreshing = false
         }
-
     }
 
     private fun getLastKnownLocation() {
-
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -125,10 +123,8 @@ class MainActivity : AppCompatActivity() {
         ) {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-
                         lastLatitude = location?.latitude!!
                         lastLongitude = location?.longitude!!
-
                         //to check values during programming
                         Log.d("********", "getLastKnownLocation: ${location.latitude}")
                         Log.d("********", "getLastKnownLocation: ${location.longitude}")
@@ -139,20 +135,12 @@ class MainActivity : AppCompatActivity() {
 
     //permission results check and if not given display a warning and another request
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-
-        if (requestCode == REQUEST_LOCATION) {
+        if (requestCode == requestLocation) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastKnownLocation()
-
             }else{
-                Toast.makeText(this, "This permission is needed for the app to work correctly.", Toast.LENGTH_LONG).show()
-                Handler(Looper.getMainLooper()).postDelayed({
-                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                        REQUEST_LOCATION
-                    )
-                }, 3501)
-
-            }
+                Toast.makeText(this, warning, Toast.LENGTH_LONG).show()
+                }
         }else{
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
@@ -160,16 +148,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun listHouses() {
         //To get the houses from API and display them on the main screen
-
         HousesApi().getHouses().enqueue(object : Callback<List<House>> {
             override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
-
                 val housedetails = response.body()
                 housedetails?.let {
-
                     //calculation of the distance between houses and current location
                     it.forEach { house ->
-
                         val results = FloatArray(1)
                         distanceBetween(
                             lastLatitude,
@@ -197,12 +181,12 @@ class MainActivity : AppCompatActivity() {
     //display function that links the data and views together and sorts the list
 
     private fun showHouses(houses: List<House>){
-        val sortedHouses = houses.sortedBy { it.price }
+        val sortedHouses = houses.sortedBy {it.price}
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)
         recyclerViewHouses.adapter = HouseAdapter(sortedHouses){ House ->
-            val houseDetailsActivityIntent = Intent(this, HouseDetails::class.java)
-            houseDetailsActivityIntent.putExtra("house", House)
+            val houseDetailsActivityIntent = Intent(this,HouseDetails::class.java)
+            houseDetailsActivityIntent.putExtra("house",House)
             startActivity(houseDetailsActivityIntent)
         }
     }

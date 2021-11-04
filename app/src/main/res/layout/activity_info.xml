@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@id/about_title" />
 
     <TextView
-        android:id="@+id/designanddev"
+        android:id="@+id/designAndDev"
         style="@style/Title01Style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,9 +42,9 @@
         android:layout_width="124dp"
         android:layout_height="73dp"
         android:layout_marginStart="@dimen/layout_margin"
-        android:contentDescription="@string/dttlogo"
+        android:contentDescription="@string/dttLogo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/designanddev"
+        app:layout_constraintTop_toBottomOf="@+id/designAndDev"
         app:srcCompat="@drawable/dtt_banner" />
 
     <TextView
@@ -54,10 +54,10 @@
         android:text="@string/by_dtt"
         style="@style/Body_HintStyle"
         app:layout_constraintStart_toEndOf="@+id/dtt_logo"
-        app:layout_constraintTop_toBottomOf="@+id/designanddev" />
+        app:layout_constraintTop_toBottomOf="@+id/designAndDev" />
 
     <TextView
-        android:id="@+id/dttwebsite"
+        android:id="@+id/dttWebsite"
         style="@style/Body_HintStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageButton
-            android:id="@+id/homebutton"
+            android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -89,7 +89,7 @@
             tools:ignore="RedundantDescriptionCheck" />
 
         <ImageButton
-            android:id="@+id/infobutton"
+            android:id="@+id/infoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

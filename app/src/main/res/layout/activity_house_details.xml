@@ -4,7 +4,6 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray"
@@ -12,7 +11,7 @@
 
 
     <ScrollView
-        android:id="@+id/scrollviewdetails"
+        android:id="@+id/scrollViewDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,10 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="@id/scrollviewdetails">
+            app:layout_constraintTop_toTopOf="@id/scrollViewDetails">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/detailimage"
+                android:id="@+id/detailImage"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 app:shapeAppearanceOverlay="@style/bigBorder"
@@ -33,57 +32,57 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RelativeLayout
-                android:id="@+id/relativelayouticons"
+                android:id="@+id/relativeLayoutIcons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/detailimage"
+                app:layout_constraintStart_toEndOf="@+id/detailImage"
                 app:layout_constraintTop_toBottomOf="@+id/zip">
 
                 <TextView
-                    android:id="@+id/detailprice"
+                    android:id="@+id/detailPrice"
                     style="@style/Title01Style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/bed_image"
+                    android:layout_alignStart="@id/bedImage"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:text="$45,000" />
+                    android:text="@string/dummyPrice" />
 
                 <ImageView
-                    android:id="@+id/bed_image"
+                    android:id="@+id/bedImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     app:tint="@color/medium"
-                    android:layout_toStartOf="@id/detailamountofbed"
+                    android:layout_toStartOf="@id/detailAmountOfBed"
                     android:contentDescription="@string/bed"
                     app:srcCompat="@drawable/ic_bed" />
 
                 <TextView
-                    android:id="@+id/detailamountofbed"
+                    android:id="@+id/detailAmountOfBed"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/bath_image"
+                    android:layout_toStartOf="@id/bathImage"
                     android:fontFamily="@font/gothamssm_book"
                     android:text="@string/amount_of_bed" />
 
                 <ImageView
-                    android:id="@+id/bath_image"
+                    android:id="@+id/bathImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     app:tint="@color/medium"
-                    android:layout_toStartOf="@id/detailamountofbath"
+                    android:layout_toStartOf="@id/detailAmountOfBath"
                     android:contentDescription="@string/bath"
                     app:srcCompat="@drawable/ic_bath" />
 
                 <TextView
-                    android:id="@+id/detailamountofbath"
+                    android:id="@+id/detailAmountOfBath"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,12 +96,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     app:tint="@color/medium"
-                    android:layout_toStartOf="@id/detailfloorarea"
+                    android:layout_toStartOf="@id/detailFloorArea"
                     android:contentDescription="@string/floor"
                     app:srcCompat="@drawable/ic_layers" />
 
                 <TextView
-                    android:id="@+id/detailfloorarea"
+                    android:id="@+id/detailFloorArea"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -116,12 +115,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     app:tint="@color/medium"
-                    android:layout_toStartOf="@id/detaillocationdistance"
+                    android:layout_toStartOf="@id/detailLocationDistance"
                     android:contentDescription="@string/location"
                     app:srcCompat="@drawable/ic_location" />
 
                 <TextView
-                    android:id="@+id/detaillocationdistance"
+                    android:id="@+id/detailLocationDistance"
                     style="@style/DetailStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,7 +135,7 @@
                 style="@style/Title02Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description" />
+                android:text="@string/descriptionTitle" />
 
             <TextView
                 android:id="@+id/createdDate"
@@ -145,7 +144,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/detailsdescription"
+                android:id="@+id/detailsDescription"
                 style="@style/Body_HintStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -156,15 +155,15 @@
                 style="@style/Title02Style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Location" />
+                android:text="@string/locationTitle" />
 
 
-            <fragment
+            <androidx.fragment.app.FragmentContainerView
                 xmlns:map="http://schemas.android.com/apk/res-auto"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:id="@+id/mapView"
                 android:clickable="true"
-                android:autoLink="web"
+                android:autoLink="map"
                 android:layout_margin="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"

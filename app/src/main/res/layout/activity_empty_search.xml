@@ -42,20 +42,21 @@
         >
 
         <ImageView
-            android:id="@+id/emptysearch_image"
+            android:id="@+id/emptySearchImage"
             android:layout_width="wrap_content"
             android:layout_height="450dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/search_state_empty">
+            android:src="@drawable/search_state_empty"
+            android:contentDescription="@string/emptySearchImageContext">
 
         </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Body_HintStyle"
-            android:text="No results found!\nPerhaps try another search?"
+            android:text="@string/searchEmptyWarning"
             android:gravity="center"
-            android:layout_below="@id/emptysearch_image"
+            android:layout_below="@id/emptySearchImage"
             android:layout_centerInParent="true"
             />
 
@@ -68,7 +69,7 @@
         android:layout_alignParentBottom="true">
 
         <ImageButton
-            android:id="@+id/homebutton"
+            android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -80,7 +81,7 @@
             />
 
         <ImageButton
-            android:id="@+id/infobutton"
+            android:id="@+id/infoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

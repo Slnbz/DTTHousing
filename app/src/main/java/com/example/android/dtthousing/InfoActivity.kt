@@ -7,20 +7,16 @@ import android.widget.ImageButton
 
 //"about" page and its features
 
-class InfoActivity : AppCompatActivity() {
+class InfoActivity : AppCompatActivity(){
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            setContentView(R.layout.info_activity)
+            setContentView(R.layout.activity_info)
 
-            val button = findViewById<ImageButton>(R.id.homebutton)
+            val button = findViewById<ImageButton>(R.id.homeButton)
             button.setOnClickListener{
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
-
-
     }
-
-
 }
