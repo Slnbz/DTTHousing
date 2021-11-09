@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        style="@style/imageMargin"
+        android:id="@+id/bedImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:tint="@color/medium"
+        android:contentDescription="@string/bed"
+        app:srcCompat="@drawable/ic_bed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/amountOfBed"
+        style="@style/DetailStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothamssm_book"
+        android:text="@string/amount_of_bed"
+        app:layout_constraintStart_toEndOf="@id/bedImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        style="@style/imageMargin"
+        android:id="@+id/bathImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/medium"
+        android:contentDescription="@string/bath"
+        app:srcCompat="@drawable/ic_bath"
+        app:layout_constraintStart_toEndOf="@id/amountOfBed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/amountOfBath"
+        style="@style/DetailStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amount_of_bath"
+        app:layout_constraintStart_toEndOf="@id/bathImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        style="@style/imageMargin"
+        android:id="@+id/layerImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/medium"
+        android:contentDescription="@string/floor"
+        app:srcCompat="@drawable/ic_layers"
+        app:layout_constraintStart_toEndOf="@id/amountOfBath"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/floorArea"
+        style="@style/DetailStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/floor_m2"
+        app:layout_constraintStart_toEndOf="@id/layerImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        style="@style/imageMargin"
+        android:id="@+id/locationImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/medium"
+        android:contentDescription="@string/location"
+        app:srcCompat="@drawable/ic_location"
+        app:layout_constraintStart_toEndOf="@id/floorArea"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/cardLocationDistance"
+        style="@style/DetailStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/distance"
+        app:layout_constraintStart_toEndOf="@id/locationImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
