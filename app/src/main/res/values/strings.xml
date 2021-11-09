@@ -30,6 +30,6 @@
     <string name="searchEmptyWarning">No results found!\nPerhaps try another search?</string>
     <string name="emptySearchImageContext">empty search image</string>
     <string name="priceString">$ %d</string>
-
+    <string name="searchHint">Search for a home</string>
 
 </resources>

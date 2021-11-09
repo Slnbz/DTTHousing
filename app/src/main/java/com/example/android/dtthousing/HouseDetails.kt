@@ -2,6 +2,7 @@ package com.example.android.dtthousing
 
 
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,13 +13,17 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-
+@Suppress("DEPRECATION")
 class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_house_details)
 
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         //map fragment setup, the location on layout
         val mapFragment=supportFragmentManager
             .findFragmentById(R.id.mapView) as SupportMapFragment
@@ -28,13 +33,13 @@ class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
 
         //definition of all views and their location on layout file
         val price:TextView = findViewById(R.id.detailPrice)
-        val bedroom:TextView = findViewById(R.id.detailAmountOfBed)
-        val bathroom:TextView = findViewById(R.id.detailAmountOfBath)
-        val houseSize:TextView = findViewById(R.id.detailFloorArea)
+        val bedroom:TextView = findViewById(R.id.amountOfBed)
+        val bathroom:TextView = findViewById(R.id.amountOfBath)
+        val houseSize:TextView = findViewById(R.id.floorArea)
         val description:TextView = findViewById(R.id.detailsDescription)
-        val createdDate:TextView = findViewById(R.id.createdDate)
+       // val createdDate:TextView = findViewById(R.id.createdDate) -> because it's not in the model screen but can be added if necessary
         val image:ImageView = findViewById(R.id.detailImage)
-        val distance:TextView = findViewById(R.id.detailLocationDistance)
+        val distance:TextView = findViewById(R.id.cardLocationDistance)
 
         //pairing of the data and the previously defined variables
         price.text = String.format("$%,d", houze.price)
@@ -42,7 +47,7 @@ class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
         bathroom.text = houze.bathrooms.toString()
         houseSize.text = houze.size.toString()
         description.text = houze.description
-        createdDate.text = houze.createdDate
+        // createdDate.text = houze.createdDate
         Glide.with(image.context)
             .load(HouseAdapter.BASE_URL_FOR_IMAGE+houze.image)
             .into(image.findViewById(R.id.detailImage))

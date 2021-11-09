@@ -1,187 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--layout definition of the HouseDetails screen-->
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollViewDetails"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/light_gray"
-    android:layout_margin="8dp">
+    android:layout_height="match_parent">
 
-
-    <ScrollView
-        android:id="@+id/scrollViewDetails"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:layout_margin="8dp">
 
-        <LinearLayout
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/detailImage"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="@id/scrollViewDetails">
+            android:layout_height="300dp"
+            app:shapeAppearanceOverlay="@style/bigBorder"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/detailImage"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                app:shapeAppearanceOverlay="@style/bigBorder"
-                android:scaleType="centerCrop"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/detailPrice"
+            style="@style/Title01Style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummyPrice"
+            app:layout_constraintTop_toBottomOf="@id/detailImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/titleDescription"/>
 
-            <RelativeLayout
-                android:id="@+id/relativeLayoutIcons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/detailImage"
-                app:layout_constraintTop_toBottomOf="@+id/zip">
+        <include android:id="@+id/infoBar"
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/info_bar_layout"
+            app:layout_constraintTop_toBottomOf="@id/detailImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/titleDescription"/>
 
-                <TextView
-                    android:id="@+id/detailPrice"
-                    style="@style/Title01Style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/bedImage"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/dummyPrice" />
-
-                <ImageView
-                    android:id="@+id/bedImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    app:tint="@color/medium"
-                    android:layout_toStartOf="@id/detailAmountOfBed"
-                    android:contentDescription="@string/bed"
-                    app:srcCompat="@drawable/ic_bed" />
-
-                <TextView
-                    android:id="@+id/detailAmountOfBed"
-                    style="@style/DetailStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/bathImage"
-                    android:fontFamily="@font/gothamssm_book"
-                    android:text="@string/amount_of_bed" />
-
-                <ImageView
-                    android:id="@+id/bathImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    app:tint="@color/medium"
-                    android:layout_toStartOf="@id/detailAmountOfBath"
-                    android:contentDescription="@string/bath"
-                    app:srcCompat="@drawable/ic_bath" />
-
-                <TextView
-                    android:id="@+id/detailAmountOfBath"
-                    style="@style/DetailStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/layer_image"
-                    android:layout_centerVertical="true"
-                    android:text="@string/amount_of_bath" />
-
-                <ImageView
-                    android:id="@+id/layer_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    app:tint="@color/medium"
-                    android:layout_toStartOf="@id/detailFloorArea"
-                    android:contentDescription="@string/floor"
-                    app:srcCompat="@drawable/ic_layers" />
-
-                <TextView
-                    android:id="@+id/detailFloorArea"
-                    style="@style/DetailStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/location_image"
-                    android:text="@string/floor_m2" />
-
-                <ImageView
-                    android:id="@+id/location_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    app:tint="@color/medium"
-                    android:layout_toStartOf="@id/detailLocationDistance"
-                    android:contentDescription="@string/location"
-                    app:srcCompat="@drawable/ic_location" />
-
-                <TextView
-                    android:id="@+id/detailLocationDistance"
-                    style="@style/DetailStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/distance" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/Title02Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/descriptionTitle" />
-
-            <TextView
-                android:id="@+id/createdDate"
-                style="@style/Body_HintStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/detailsDescription"
-                style="@style/Body_HintStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-            <TextView
-                android:id="@+id/textView4"
-                style="@style/Title02Style"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/locationTitle" />
+        <TextView
+            android:id="@+id/titleDescription"
+            style="@style/Title02Style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/descriptionTitle"
+            app:layout_constraintTop_toBottomOf="@id/infoBar"/>
 
 
-            <androidx.fragment.app.FragmentContainerView
-                xmlns:map="http://schemas.android.com/apk/res-auto"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:id="@+id/mapView"
-                android:clickable="true"
-                android:autoLink="map"
-                android:layout_margin="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                map:cameraTilt="30"
-                map:cameraZoom="13"
-                map:mapType="normal"
-                map:uiCompass="false"
-                map:uiRotateGestures="true"
-                map:uiScrollGestures="false"
-                map:uiTiltGestures="true"
-                map:uiZoomControls="false"
-                map:uiZoomGestures="true"
-                android:focusable="true" />
+        <TextView
+            android:id="@+id/detailsDescription"
+            style="@style/Body_HintStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/titleDescription"
+            />
+
+        <TextView
+            android:id="@+id/titleLocation"
+            style="@style/Title02Style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/locationTitle"
+            app:layout_constraintTop_toBottomOf="@id/detailsDescription"/>
 
 
-        </LinearLayout>
-    </ScrollView>
+        <androidx.fragment.app.FragmentContainerView
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:id="@+id/mapView"
+            android:clickable="true"
+            android:autoLink="web|map"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            map:cameraTilt="30"
+            map:cameraZoom="13"
+            map:mapType="normal"
+            map:uiCompass="false"
+            map:uiRotateGestures="true"
+            map:uiScrollGestures="false"
+            map:uiTiltGestures="true"
+            map:uiZoomControls="false"
+            map:uiZoomGestures="true"
+            android:focusable="true"
+            app:layout_constraintTop_toBottomOf="@id/titleLocation"/>
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

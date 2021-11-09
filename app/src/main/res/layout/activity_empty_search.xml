@@ -2,7 +2,7 @@
 
 <!--Empty search list layout defined-->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,80 +16,83 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dtt_real_estate"
-        android:layout_alignParentTop="true"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
+        android:theme="@style/SearchViewStyle"
         android:id="@+id/Search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
         android:background="@color/dark_gray"
         android:clickable="true"
         android:closeIcon="@drawable/ic_close"
         android:focusable="true"
-        android:searchIcon="@drawable/ic_search_xml"
-        android:layout_below="@id/DTT_real">
+        android:layoutDirection="rtl"
+        android:iconifiedByDefault="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DTT_real">
 
-    </SearchView>
+    </androidx.appcompat.widget.SearchView>
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/emptySearchImage"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".60"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".35"
+        android:contentDescription="@string/emptySearchImageContext"
+        android:src="@drawable/search_state_empty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Search"
+        app:layout_constraintBottom_toTopOf="@+id/homeButton">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/emptySearchWarning"
+        style="@style/Body_HintStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Search"
-        android:fillViewport="true"
-        >
+        android:gravity="center"
+        android:text="@string/searchEmptyWarning"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emptySearchImage"
+        tools:ignore="TextContrastCheck" />
 
-        <ImageView
-            android:id="@+id/emptySearchImage"
-            android:layout_width="wrap_content"
-            android:layout_height="450dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/search_state_empty"
-            android:contentDescription="@string/emptySearchImageContext">
-
-        </ImageView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Body_HintStyle"
-            android:text="@string/searchEmptyWarning"
-            android:gravity="center"
-            android:layout_below="@id/emptySearchImage"
-            android:layout_centerInParent="true"
-            />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".5"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:backgroundTint="@color/dark_gray"
+        android:contentDescription="@string/home_button"
+        app:srcCompat="@drawable/ic_home"
+        app:tint="@color/black"
+        tools:ignore="RedundantDescriptionCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/infoButton"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ImageButton
-            android:id="@+id/homeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/dark_gray"
-            android:contentDescription="@string/home_button"
-            app:srcCompat="@drawable/ic_home"
-            app:tint="@color/black"
-            tools:ignore="RedundantDescriptionCheck"
-            />
+    <ImageButton
+        android:id="@+id/infoButton"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".5"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_gray"
+        android:contentDescription="@string/info_button"
+        app:srcCompat="@drawable/ic_info"
+        app:tint="@color/medium"
+        tools:ignore="RedundantDescriptionCheck,ImageContrastCheck"
+        app:layout_constraintStart_toEndOf="@id/homeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ImageButton
-            android:id="@+id/infoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/dark_gray"
-            android:contentDescription="@string/info_button"
-            app:srcCompat="@drawable/ic_info"
-            app:tint="@color/medium"
-            tools:ignore="RedundantDescriptionCheck,ImageContrastCheck" />
-    </LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

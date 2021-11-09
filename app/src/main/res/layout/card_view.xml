@@ -2,154 +2,87 @@
 
 <!--layout defined of a single component of the recycler view -->
 
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rowView"
     android:layout_width="match_parent"
-    android:background="@color/light_gray"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@color/white"
+    android:layout_marginBottom="5dp"
+    android:elevation="10dp"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp"
+    app:cardPreventCornerOverlap="true">
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginBottom="5dp"
-        android:elevation="10dp"
-        android:clipToPadding="false"
-        android:clipChildren="false"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="5dp"
-        app:cardPreventCornerOverlap="true">
+        android:background="@color/light_gray"
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:background="@color/light_gray"
-            android:layout_height="wrap_content">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/houseImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:shapeAppearanceOverlay="@style/border"
+            android:contentDescription="@string/house_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            tools:ignore="ImageContrastCheck"
+            tools:srcCompat="@tools:sample/avatars" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/houseImage"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                app:shapeAppearanceOverlay="@style/border"
-                android:contentDescription="@string/house_image"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:scaleType="centerCrop"
-                tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/zip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/dummyZip"
+            android:textColor="@color/medium"
+            app:layout_constraintStart_toEndOf="@+id/houseImage"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            tools:ignore="TextContrastCheck" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/houseImage"
-                app:layout_constraintTop_toBottomOf="@+id/zip">
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/dummyCity"
+            android:textColor="@color/medium"
+            app:layout_constraintStart_toEndOf="@+id/zip"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            tools:ignore="TextContrastCheck" />
 
-                <ImageView
-                    android:id="@+id/bedImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/medium"
-                    android:contentDescription="@string/bed"
-                    app:srcCompat="@drawable/ic_bed" />
+        <TextView
+            android:id="@+id/price"
+            style="@style/Title01Style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/_45_000"
+            android:textColor="@color/strong"
+            app:layout_constraintStart_toEndOf="@+id/houseImage"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/amountOfBed"
-                    style="@style/DetailStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gothamssm_book"
-                    android:text="@string/amount_of_bed" />
 
-                <ImageView
-                    android:id="@+id/bathImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/medium"
-                    android:contentDescription="@string/bath"
-                    app:srcCompat="@drawable/ic_bath" />
+        <include android:id="@+id/infoBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/info_bar_layout"
+            app:layout_constraintStart_toEndOf="@id/houseImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/zip"/>
 
-                <TextView
-                    android:id="@+id/amountOfBath"
-                    style="@style/DetailStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/amount_of_bath" />
 
-                <ImageView
-                    android:id="@+id/layer_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/medium"
-                    android:contentDescription="@string/floor"
-                    app:srcCompat="@drawable/ic_layers" />
 
-                <TextView
-                    android:id="@+id/floorArea"
-                    style="@style/DetailStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/floor_m2" />
-
-                <ImageView
-                    android:id="@+id/locationImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/medium"
-                    android:contentDescription="@string/location"
-                    app:srcCompat="@drawable/ic_location" />
-
-                <TextView
-                    android:id="@+id/cardLocationDistance"
-                    style="@style/DetailStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/distance" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/zip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/dummyZip"
-                android:textColor="@color/medium"
-                app:layout_constraintStart_toEndOf="@+id/houseImage"
-                app:layout_constraintTop_toBottomOf="@+id/price"
-                tools:ignore="TextContrastCheck" />
-
-            <TextView
-                android:id="@+id/city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/dummyCity"
-                android:textColor="@color/medium"
-                app:layout_constraintStart_toEndOf="@+id/zip"
-                app:layout_constraintTop_toBottomOf="@+id/price"
-                tools:ignore="TextContrastCheck" />
-
-            <TextView
-                android:id="@+id/price"
-                style="@style/Title01Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/_45_000"
-                android:textColor="@color/strong"
-                app:layout_constraintStart_toEndOf="@+id/houseImage"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

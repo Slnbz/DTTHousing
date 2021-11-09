@@ -71,33 +71,34 @@
         tools:ignore="TouchTargetSizeCheck"
         android:focusable="true" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".5"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:backgroundTint="@color/dark_gray"
+        android:contentDescription="@string/home_button"
+        app:srcCompat="@drawable/ic_home"
+        app:tint="@color/medium"
+        tools:ignore="RedundantDescriptionCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/infoButton"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ImageButton
-            android:id="@+id/homeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/dark_gray"
-            android:contentDescription="@string/home_button"
-            app:srcCompat="@drawable/ic_home"
-            app:tint="@color/medium"
-            tools:ignore="RedundantDescriptionCheck" />
-
-        <ImageButton
-            android:id="@+id/infoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/dark_gray"
-            android:contentDescription="@string/info_button"
-            app:srcCompat="@drawable/ic_info"
-            app:tint="@color/black"
-            tools:ignore="RedundantDescriptionCheck,ImageContrastCheck" />
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/infoButton"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".5"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_gray"
+        android:contentDescription="@string/info_button"
+        app:srcCompat="@drawable/ic_info"
+        app:tint="@color/black"
+        tools:ignore="RedundantDescriptionCheck,ImageContrastCheck"
+        app:layout_constraintStart_toEndOf="@id/homeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

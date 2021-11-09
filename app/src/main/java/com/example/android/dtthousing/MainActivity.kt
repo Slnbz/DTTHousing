@@ -29,7 +29,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.appcompat.widget.SearchView
 
 // Main screen, Activity and features
-
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -60,6 +60,11 @@ class MainActivity : AppCompatActivity() {
             setContentView(it.root)
 
         }
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -92,6 +97,8 @@ class MainActivity : AppCompatActivity() {
             }
         })*/
 
+        val searchViewMain = findViewById<SearchView>(R.id.searchBar)
+        searchViewMain.queryHint = "Search for a home"
         //To get to the "About" screen with the info button
 
         val button = findViewById<ImageButton>(R.id.infoButton)
