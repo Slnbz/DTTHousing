@@ -35,10 +35,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var swipeContainer: SwipeRefreshLayout
-
-
     private val requestLocation = 1
-
     var lastLatitude = 0.0
     var lastLongitude = 0.0
     private var warning : String = "Warning: This permission is needed for the app to work correctly."
@@ -55,20 +52,16 @@ class MainActivity : AppCompatActivity() {
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
             requestLocation
         )
-
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
 
         }
-
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
 
         //attempted search function, status: not working, therefore commented out including related variables
 
@@ -96,17 +89,15 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         })*/
-
         val searchViewMain = findViewById<SearchView>(R.id.searchBar)
         searchViewMain.queryHint = "Search for a home"
-        //To get to the "About" screen with the info button
 
+        //To get to the "About" screen with the info button
         val button = findViewById<ImageButton>(R.id.infoButton)
         button.setOnClickListener {
             val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
         }
-
         if (lastLatitude == 0.0 && lastLongitude == 0.0) {
             getLastKnownLocation()
         }

@@ -16,7 +16,6 @@ class HouseAdapter(private val houses: List<House>, private val listener: (House
         const val BASE_URL_FOR_IMAGE =
                 "https://intern.docker-dev.d-tt.nl"
     }
-
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
         //definition of all views and their location on layout file
@@ -32,14 +31,12 @@ class HouseAdapter(private val houses: List<House>, private val listener: (House
     }
 
     //definition and linking of where the data is supposed to be and to create the single piece of the recycler view (one card of the RV)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HouseAdapter.ViewHolder {
         val v:View = LayoutInflater.from(parent.context).inflate(R.layout.card_view,parent,false)
         return ViewHolder(v)
     }
 
     //pairing of the data and the previously defined variables
-
     override fun onBindViewHolder(holder: HouseAdapter.ViewHolder,position: Int){
         val houze = houses[position]
 

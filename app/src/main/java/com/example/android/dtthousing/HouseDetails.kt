@@ -1,14 +1,10 @@
 package com.example.android.dtthousing
 
-
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentContainerView
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -16,9 +12,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.CameraUpdate
-
-
 
 @Suppress("DEPRECATION")
 class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
@@ -27,10 +20,11 @@ class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_house_details)
 
+        //setup of action bar for the back button
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setDisplayShowTitleEnabled(false)
-
+        //fullscreen
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -63,10 +57,9 @@ class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
             .load(HouseAdapter.BASE_URL_FOR_IMAGE+houze.image)
             .into(image.findViewById(R.id.detailImage))
         distance.text = houze.distanceFromCurrentLocation
-
     }
 
-    //setup of the map fragment & its features
+    //setup of the map fragment, getting the house location and displaying in the fragment
     private lateinit var myMap:GoogleMap
     override fun onMapReady(googleMap:GoogleMap) {
         val houze = intent.getSerializableExtra("house") as House
@@ -76,6 +69,7 @@ class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
         myMap.moveCamera(CameraUpdateFactory.newLatLng(houseLocation))
         myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(houseLocation, 13F))
     }
+    //action bar back button function
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
