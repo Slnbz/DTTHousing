@@ -28,7 +28,7 @@
         <activity
             android:name=".HouseDetails"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar"
+            android:theme="@style/myActionbarTransparent"
             />
         <activity
             android:name=".SplashScreenActivity"

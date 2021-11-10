@@ -1,11 +1,14 @@
 package com.example.android.dtthousing
 
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentContainerView
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -13,12 +16,20 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.CameraUpdate
+
+
+
 @Suppress("DEPRECATION")
 class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_house_details)
+
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setDisplayShowTitleEnabled(false)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -52,16 +63,22 @@ class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
             .load(HouseAdapter.BASE_URL_FOR_IMAGE+houze.image)
             .into(image.findViewById(R.id.detailImage))
         distance.text = houze.distanceFromCurrentLocation
+
     }
 
     //setup of the map fragment & its features
     private lateinit var myMap:GoogleMap
     override fun onMapReady(googleMap:GoogleMap) {
         val houze = intent.getSerializableExtra("house") as House
-        myMap=googleMap
         val houseLocation = LatLng(houze.latitude,houze.longitude)
+        myMap=googleMap
         myMap.addMarker(MarkerOptions().position(houseLocation).title(houze.zip+" "+houze.city))
         myMap.moveCamera(CameraUpdateFactory.newLatLng(houseLocation))
+        myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(houseLocation, 13F))
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
 
