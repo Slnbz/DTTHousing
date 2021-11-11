@@ -1,32 +1,30 @@
 package com.example.android.dtthousing
 
+//imports below for the attempted search function
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import android.location.Location.distanceBetween
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.android.dtthousing.databinding.ActivityMainBinding
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.google.android.gms.location.FusedLocationProviderClient
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-
-//imports below for the attempted search function
-import androidx.appcompat.widget.SearchView
 
 // Main screen, Activity and features
 @Suppress("DEPRECATION")
@@ -89,12 +87,15 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         })*/
-        val searchViewMain = findViewById<SearchView>(R.id.searchBar)
-        searchViewMain.queryHint = "Search for a home"
+
+        val toolBar = findViewById<ConstraintLayout>(R.id.toolBar)
+        val homeButtonColor = toolBar.findViewById<ImageButton>(R.id.homeButton)
+        homeButtonColor.setColorFilter(Color.BLACK)
 
         //To get to the "About" screen with the info button
-        val button = findViewById<ImageButton>(R.id.infoButton)
-        button.setOnClickListener {
+        val infoButton = toolBar.findViewById<ImageButton>(R.id.infoButton)
+        infoButton.setColorFilter(Color.LTGRAY)
+        infoButton.setOnClickListener {
             val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
         }

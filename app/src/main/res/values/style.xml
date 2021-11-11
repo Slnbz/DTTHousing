@@ -60,6 +60,8 @@
     <style name="ThemeActionBar"
         parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:paddingStart">6dp</item>
         <!-- Support library compatibility -->
         <item name="background">@android:color/transparent</item>
     </style>

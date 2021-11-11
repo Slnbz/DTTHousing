@@ -11,29 +11,29 @@
     android:background="@color/light_gray">
 
     <TextView
-        android:id="@+id/DTT_real"
+        android:id="@+id/dttTitle"
         style="@style/Title01Style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="30dp"
         android:text="@string/dtt_real_estate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.SearchView
         android:theme="@style/SearchViewStyle"
-        android:id="@+id/Search"
+        android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@color/dark_gray"
+        android:background="@drawable/search_view_rounded"
         android:clickable="true"
         android:closeIcon="@drawable/ic_close"
         android:focusable="true"
-        android:layoutDirection="rtl"
-        android:iconifiedByDefault="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DTT_real">
-
+        app:searchIcon="@null"
+        app:queryHint="@string/searchHint"
+        app:iconifiedByDefault="false"
+        app:layout_constraintTop_toBottomOf="@id/dttTitle">
     </androidx.appcompat.widget.SearchView>
 
     <ImageView
@@ -48,7 +48,7 @@
         android:src="@drawable/search_state_empty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Search"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar"
         app:layout_constraintBottom_toTopOf="@+id/homeButton">
 
     </ImageView>

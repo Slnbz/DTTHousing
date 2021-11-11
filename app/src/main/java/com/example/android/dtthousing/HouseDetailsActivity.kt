@@ -3,8 +3,11 @@ package com.example.android.dtthousing
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -24,6 +27,8 @@ class HouseDetails:AppCompatActivity(),OnMapReadyCallback{
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setDisplayShowTitleEnabled(false)
+
+
         //fullscreen
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,

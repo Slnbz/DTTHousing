@@ -12,6 +12,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:paddingTop="30dp"
         android:id="@+id/dttTitle"
         style="@style/Title01Style"
         android:layout_width="wrap_content"
@@ -26,64 +27,66 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@color/dark_gray"
+        android:background="@drawable/search_view_rounded"
         android:clickable="true"
         android:closeIcon="@drawable/ic_close"
         android:focusable="true"
-        android:layoutDirection="rtl"
+        app:searchIcon="@null"
+        app:defaultQueryHint="@string/searchHint"
         android:iconifiedByDefault="false"
+        app:iconifiedByDefault="false"
         app:layout_constraintTop_toBottomOf="@id/dttTitle">
     </androidx.appcompat.widget.SearchView>
 
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/swipeRefresh"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    app:layout_constraintTop_toBottomOf="@id/searchBar"
-    app:layout_constraintBottom_toTopOf="@id/homeButton"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_search_xml"
+        app:tint="@color/light"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toTopOf="@+id/searchBar"
+        app:layout_constraintBottom_toBottomOf="@+id/searchBar"
+        app:layout_constraintEnd_toEndOf="@+id/searchBar"
+        android:contentDescription="@string/searchIcon"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_houses"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_width="match_parent"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:background="@color/light_gray"
-        android:fillViewport="true"
-        android:scrollbars="vertical"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <ImageButton
-        android:id="@+id/homeButton"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".5"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_gray"
-        android:contentDescription="@string/home_button"
-        app:srcCompat="@drawable/ic_home"
-        app:tint="@color/black"
-        tools:ignore="RedundantDescriptionCheck"
+        app:layout_constraintTop_toBottomOf="@id/searchBar"
+        app:layout_constraintBottom_toTopOf="@id/toolBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/infoButton"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <ImageButton
-        android:id="@+id/infoButton"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".5"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_houses"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/layout_margin"
+            android:background="@color/light_gray"
+            android:fillViewport="true"
+            android:scrollbars="vertical"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!--    for creating the shadow effect-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        app:layout_constraintBottom_toTopOf="@id/toolBar"
+        android:background="@drawable/top_shadow" />
+
+    <include
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_gray"
-        android:contentDescription="@string/info_button"
-        app:srcCompat="@drawable/ic_info"
-        app:tint="@color/medium"
-        tools:ignore="RedundantDescriptionCheck,ImageContrastCheck"
-        app:layout_constraintStart_toEndOf="@id/homeButton"
+        layout="@layout/bottom_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

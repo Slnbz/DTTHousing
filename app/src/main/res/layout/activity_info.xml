@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginTop="@dimen/layout_margin"
     android:background="@color/light_gray"
     tools:context=".InfoActivity">
 
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/about"
+        android:paddingTop="30dp"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
@@ -71,34 +73,21 @@
         tools:ignore="TouchTargetSizeCheck"
         android:focusable="true" />
 
-    <ImageButton
-        android:id="@+id/homeButton"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".5"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_gray"
-        android:contentDescription="@string/home_button"
-        app:srcCompat="@drawable/ic_home"
-        app:tint="@color/medium"
-        tools:ignore="RedundantDescriptionCheck"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/infoButton"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <!--    for creating the shadow effect-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        app:layout_constraintBottom_toTopOf="@id/toolBar"
+        android:background="@drawable/top_shadow" />
 
-    <ImageButton
-        android:id="@+id/infoButton"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".5"
+    <include
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_gray"
-        android:contentDescription="@string/info_button"
-        app:srcCompat="@drawable/ic_info"
-        app:tint="@color/black"
-        tools:ignore="RedundantDescriptionCheck,ImageContrastCheck"
-        app:layout_constraintStart_toEndOf="@id/homeButton"
+        layout="@layout/bottom_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

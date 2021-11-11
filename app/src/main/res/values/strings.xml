@@ -31,5 +31,6 @@
     <string name="emptySearchImageContext">empty search image</string>
     <string name="priceString">$ %d</string>
     <string name="searchHint">Search for a home</string>
+    <string name="searchIcon">search icon</string>
 
 </resources>
