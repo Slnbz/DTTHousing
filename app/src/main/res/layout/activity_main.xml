@@ -31,23 +31,26 @@
         android:clickable="true"
         android:closeIcon="@drawable/ic_close"
         android:focusable="true"
-        app:searchIcon="@null"
+        app:searchIcon="@drawable/ic_search_xml"
+        android:layoutDirection="rtl"
         app:defaultQueryHint="@string/searchHint"
+        android:textDirection="ltr"
         android:iconifiedByDefault="false"
         app:iconifiedByDefault="false"
         app:layout_constraintTop_toBottomOf="@id/dttTitle">
     </androidx.appcompat.widget.SearchView>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_search_xml"
-        app:tint="@color/light"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toTopOf="@+id/searchBar"
-        app:layout_constraintBottom_toBottomOf="@+id/searchBar"
-        app:layout_constraintEnd_toEndOf="@+id/searchBar"
-        android:contentDescription="@string/searchIcon"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/searchIcon"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/ic_search_xml"-->
+<!--        app:tint="@color/light"-->
+<!--        android:layout_margin="10dp"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/searchBar"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/searchBar"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/searchBar"-->
+<!--        android:contentDescription="@string/searchIcon"/>-->
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"

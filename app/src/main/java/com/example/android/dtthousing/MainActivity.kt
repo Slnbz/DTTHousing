@@ -9,8 +9,10 @@ import android.location.Location
 import android.location.Location.distanceBetween
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -87,6 +89,12 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         })*/
+
+        val searchViewMain = findViewById<SearchView>(R.id.searchBar)
+        searchViewMain.setOnClickListener {
+            val searchIcon = findViewById<ImageView>(R.id.searchIcon)
+
+        }
 
         val toolBar = findViewById<ConstraintLayout>(R.id.toolBar)
         val homeButtonColor = toolBar.findViewById<ImageButton>(R.id.homeButton)
