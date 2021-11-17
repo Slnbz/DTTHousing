@@ -1,4 +1,4 @@
-package com.example.android.dtthousing
+package com.example.android.dtthousing.ui.main.view
 
 //imports below for the attempted search function
 import android.Manifest
@@ -9,10 +9,8 @@ import android.location.Location
 import android.location.Location.distanceBetween
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -21,7 +19,11 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.android.dtthousing.R
+import com.example.android.dtthousing.data.api.HousesApi
+import com.example.android.dtthousing.data.model.House
 import com.example.android.dtthousing.databinding.ActivityMainBinding
+import com.example.android.dtthousing.ui.main.adapter.HouseAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import retrofit2.Call
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     var lastLatitude = 0.0
     var lastLongitude = 0.0
     private var warning : String = "Warning: This permission is needed for the app to work correctly."
+    private var internetFailure : String = "Your device has no internet connection."
     //private lateinit var adapt: HouseAdapter
     //private var thesearchlist = mutableListOf<String>()
     //private var displaylist = mutableListOf<String>()
@@ -92,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
         val searchViewMain = findViewById<SearchView>(R.id.searchBar)
         searchViewMain.setOnClickListener {
-            val searchIcon = findViewById<ImageView>(R.id.searchIcon)
+           // val searchIcon = findViewById<ImageView>(R.id.searchIcon)
 
         }
 
@@ -107,6 +110,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
         }
+
+        //updating the location
         if (lastLatitude == 0.0 && lastLongitude == 0.0) {
             getLastKnownLocation()
         }
@@ -179,9 +184,8 @@ class MainActivity : AppCompatActivity() {
                     showHouses(it)
                 }
             }
-
             override fun onFailure(call: Call<List<House>>, t: Throwable) {
-                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, internetFailure, Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -192,11 +196,9 @@ class MainActivity : AppCompatActivity() {
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)
         recyclerViewHouses.adapter = HouseAdapter(sortedHouses){ House ->
-            val houseDetailsActivityIntent = Intent(this,HouseDetails::class.java)
+            val houseDetailsActivityIntent = Intent(this, HouseDetails::class.java)
             houseDetailsActivityIntent.putExtra("house",House)
             startActivity(houseDetailsActivityIntent)
         }
     }
-
-
 }

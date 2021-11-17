@@ -7,12 +7,12 @@
 
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.android.dtthousing.MainActivity"
+        android:name="com.example.android.dtthousing.ui.main.view.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <activity
-        android:id="@+id/infoActiviy"
-        android:name="com.example.android.dtthousing.InfoActiviy"
-        android:label="info_activiy"
+        android:id="@+id/infoActivity"
+        android:name="com.example.android.dtthousing.ui.main.view.InfoActivity"
+        android:label="info_activity"
         tools:layout="@layout/activity_info" />
 </navigation>

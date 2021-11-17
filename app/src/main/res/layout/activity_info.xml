@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:layout_marginTop="@dimen/layout_margin"
     android:background="@color/light_gray"
-    tools:context=".InfoActivity">
+    tools:context=".ui.main.view.InfoActivity">
 
     <TextView
         android:id="@+id/about_title"

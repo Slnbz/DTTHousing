@@ -1,13 +1,13 @@
-package com.example.android.dtthousing
+package com.example.android.dtthousing.ui.main.view
 
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.android.dtthousing.R
 
 //"about" page and its features
 @Suppress ("DEPRECATION")

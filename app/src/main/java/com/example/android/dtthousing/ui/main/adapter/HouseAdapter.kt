@@ -1,4 +1,4 @@
-package com.example.android.dtthousing
+package com.example.android.dtthousing.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.android.dtthousing.data.model.House
+import com.example.android.dtthousing.R
 
 //Adapter class for getting the corresponding data and linking it to the views
 
@@ -31,13 +33,13 @@ class HouseAdapter(private val houses: List<House>, private val listener: (House
     }
 
     //definition and linking of where the data is supposed to be and to create the single piece of the recycler view (one card of the RV)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HouseAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v:View = LayoutInflater.from(parent.context).inflate(R.layout.card_view,parent,false)
         return ViewHolder(v)
     }
 
     //pairing of the data and the previously defined variables
-    override fun onBindViewHolder(holder: HouseAdapter.ViewHolder,position: Int){
+    override fun onBindViewHolder(holder: ViewHolder, position: Int){
         val houze = houses[position]
 
         holder.price.text = String.format("$%,d", houze.price)
@@ -47,7 +49,7 @@ class HouseAdapter(private val houses: List<House>, private val listener: (House
         holder.city.text = houze.city
         holder.zip.text = houze.zip
         Glide.with(holder.image.context)
-            .load(BASE_URL_FOR_IMAGE+houze.image)
+            .load(BASE_URL_FOR_IMAGE +houze.image)
             .into(holder.image.findViewById(R.id.houseImage))
         holder.mainDistance.text = houze.distanceFromCurrentLocation
         holder.itemView.setOnClickListener {listener(houze)}

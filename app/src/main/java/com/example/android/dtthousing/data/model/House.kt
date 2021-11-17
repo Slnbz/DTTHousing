@@ -1,4 +1,4 @@
-package com.example.android.dtthousing
+package com.example.android.dtthousing.data.model
 
 import java.io.Serializable
 

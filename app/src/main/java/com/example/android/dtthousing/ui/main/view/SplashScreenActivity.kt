@@ -1,10 +1,11 @@
-package com.example.android.dtthousing
+package com.example.android.dtthousing.ui.main.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import com.example.android.dtthousing.R
 
 //splash screen to show the DTT logo
 
