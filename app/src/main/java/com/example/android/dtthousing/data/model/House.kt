@@ -3,7 +3,6 @@ package com.example.android.dtthousing.data.model
 import java.io.Serializable
 
 //class for definition of the objects to link to the data
-
 data class House (
     val id: Int,
     val image: String,

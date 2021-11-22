@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--Empty search list layout defined-->
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,30 +10,40 @@
     android:background="@color/light_gray">
 
     <TextView
+        android:paddingTop="30dp"
         android:id="@+id/dttTitle"
         style="@style/Title01Style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:text="@string/dtt_real_estate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/dttRealEstate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-    <androidx.appcompat.widget.SearchView
-        android:theme="@style/SearchViewStyle"
-        android:id="@+id/searchBar"
+    <include
+        android:id="@+id/searchBarEmpty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/search_view_rounded"
+        layout="@layout/search_bar_layout"
+        app:layout_constraintTop_toBottomOf="@id/dttTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/intentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
         android:clickable="true"
-        android:closeIcon="@drawable/ic_close"
         android:focusable="true"
-        app:searchIcon="@null"
-        app:queryHint="@string/searchHint"
-        app:iconifiedByDefault="false"
-        app:layout_constraintTop_toBottomOf="@id/dttTitle">
-    </androidx.appcompat.widget.SearchView>
+        android:soundEffectsEnabled="false"
+        app:layout_constraintTop_toTopOf="@id/searchBarEmpty"
+        app:layout_constraintBottom_toBottomOf="@id/searchBarEmpty"
+        app:layout_constraintStart_toStartOf="@id/searchBarEmpty"
+        app:layout_constraintEnd_toEndOf="@id/searchBarEmpty"
+        />
 
     <ImageView
         android:id="@+id/emptySearchImage"
@@ -48,8 +57,8 @@
         android:src="@drawable/search_state_empty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar"
-        app:layout_constraintBottom_toTopOf="@+id/homeButton">
+        app:layout_constraintTop_toBottomOf="@+id/searchBarEmpty"
+        app:layout_constraintBottom_toTopOf="@+id/toolBar">
 
     </ImageView>
 
@@ -65,34 +74,21 @@
         app:layout_constraintTop_toBottomOf="@+id/emptySearchImage"
         tools:ignore="TextContrastCheck" />
 
-    <ImageButton
-        android:id="@+id/homeButton"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".5"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_gray"
-        android:contentDescription="@string/home_button"
-        app:srcCompat="@drawable/ic_home"
-        app:tint="@color/black"
-        tools:ignore="RedundantDescriptionCheck"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/infoButton"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <!--    for creating the shadow effect-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        app:layout_constraintBottom_toTopOf="@id/toolBar"
+        android:background="@drawable/top_shadow" />
 
-    <ImageButton
-        android:id="@+id/infoButton"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".5"
+    <include
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/dark_gray"
-        android:contentDescription="@string/info_button"
-        app:srcCompat="@drawable/ic_info"
-        app:tint="@color/medium"
-        tools:ignore="RedundantDescriptionCheck,ImageContrastCheck"
-        app:layout_constraintStart_toEndOf="@id/homeButton"
+        layout="@layout/bottom_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

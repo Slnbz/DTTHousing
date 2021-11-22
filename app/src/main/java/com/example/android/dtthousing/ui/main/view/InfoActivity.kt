@@ -21,7 +21,7 @@ class InfoActivity : AppCompatActivity(){
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
-
+            //toolbar buttons behavior setup
             val toolBar = findViewById<ConstraintLayout>(R.id.toolBar)
             val infoButton = toolBar.findViewById<ImageButton>(R.id.infoButton)
             infoButton.setColorFilter(Color.BLACK)

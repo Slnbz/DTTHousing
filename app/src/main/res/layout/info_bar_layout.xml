@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gothamssm_book"
-        android:text="@string/amount_of_bed"
+        android:text="@string/amountOfBed"
         app:layout_constraintStart_toEndOf="@id/bedImage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -46,7 +46,7 @@
         style="@style/DetailStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/amount_of_bath"
+        android:text="@string/amountOfBath"
         app:layout_constraintStart_toEndOf="@id/bathImage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -68,7 +68,7 @@
         style="@style/DetailStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/floor_m2"
+        android:text="@string/floorM2"
         app:layout_constraintStart_toEndOf="@id/layerImage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

@@ -10,7 +10,6 @@
     android:background="@color/red"
     tools:context=".ui.main.view.SplashScreenActivity">
 
-
     <ImageView
         android:id="@+id/splashIcon"
         android:layout_width="wrap_content"
@@ -21,5 +20,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_dtt_xml"
-        />
+        android:contentDescription="@string/dttLogoSplashScreen" />
 </androidx.constraintlayout.widget.ConstraintLayout>

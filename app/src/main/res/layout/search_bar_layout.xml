@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.SearchView
+        android:theme="@style/SearchViewStyle"
+        android:id="@+id/searchViewBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/search_view_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        app:searchIcon="@null"
+        app:defaultQueryHint="@string/searchHint"
+        android:textDirection="ltr"
+        android:iconifiedByDefault="false"
+        app:iconifiedByDefault="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/searchBarIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_xml"
+            app:tint="@color/light"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toTopOf="@+id/searchViewBar"
+            app:layout_constraintBottom_toBottomOf="@+id/searchViewBar"
+            app:layout_constraintEnd_toEndOf="@+id/searchViewBar"
+            android:contentDescription="@string/searchIcon"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

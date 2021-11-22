@@ -10,7 +10,6 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 
 //setup of API variables to use given url data
-
 private const val BASE_URL = "https://intern.docker-dev.d-tt.nl/api/"
 interface HousesApi {
     @Headers("Access-key: $HOUSE_API_KEY")

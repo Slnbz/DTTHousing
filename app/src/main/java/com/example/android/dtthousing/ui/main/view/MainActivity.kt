@@ -9,8 +9,10 @@ import android.location.Location
 import android.location.Location.distanceBetween
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -29,6 +31,7 @@ import com.google.android.gms.location.LocationServices
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 // Main screen, Activity and features
 @Suppress("DEPRECATION")
@@ -37,19 +40,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var swipeContainer: SwipeRefreshLayout
+    private lateinit var housesList: List<House>
     private val requestLocation = 1
     var lastLatitude = 0.0
     var lastLongitude = 0.0
     private var warning : String = "Warning: This permission is needed for the app to work correctly."
-    private var internetFailure : String = "Your device has no internet connection."
-    //private lateinit var adapt: HouseAdapter
-    //private var thesearchlist = mutableListOf<String>()
-    //private var displaylist = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //immediate permission request
+        val houses = listOf<House>()
+        housesList = houses
+        //location permission request
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
@@ -57,8 +58,8 @@ class MainActivity : AppCompatActivity() {
         )
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
-
         }
+        //fullscreen
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -66,39 +67,13 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerviewHouses.layoutManager = LinearLayoutManager(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        //attempted search function, status: not working, therefore commented out including related variables
+        //setup of search bar components
+        val searchBar = findViewById<ConstraintLayout>(R.id.searchBar)
+        val searchBarIcon = searchBar.findViewById<ImageView>(R.id.searchBarIcon)
+        val searchViewMain = searchBar.findViewById<SearchView>(R.id.searchViewBar)
+        searchBarIcon.visibility = View.VISIBLE
 
-        /*       findViewById<android.widget.SearchView>(R.id.search).setOnQueryTextListener(object :
-            android.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText?.isNotEmpty() == true) {
-                    displaylist.clear()
-                    val search = newText.lowercase(Locale.getDefault())
-                    for (houses in thesearchlist) {
-                        if (houses.lowercase(Locale.getDefault()).contains(search)) {
-                            displaylist.add(houses)
-                        }
-                    }
-                    recyclerViewHouses.adapter!!.notifyDataSetChanged()
-                } else {
-                    displaylist.clear()
-                    setContentView(R.layout.item_empty_dataset)
-                    recyclerViewHouses.adapter!!.notifyDataSetChanged()
-
-                }
-                return true
-            }
-        })*/
-
-        val searchViewMain = findViewById<SearchView>(R.id.searchBar)
-        searchViewMain.setOnClickListener {
-           // val searchIcon = findViewById<ImageView>(R.id.searchIcon)
-
-        }
-
+        //setup of the toolbar buttons and their behavior
         val toolBar = findViewById<ConstraintLayout>(R.id.toolBar)
         val homeButtonColor = toolBar.findViewById<ImageButton>(R.id.homeButton)
         homeButtonColor.setColorFilter(Color.BLACK)
@@ -117,13 +92,44 @@ class MainActivity : AppCompatActivity() {
         }
 
         swipeContainer = findViewById(R.id.swipeRefresh)
+        swipeContainer.isEnabled = true
         // Setup refresh listener which triggers update of the data (created for location specifically)
         swipeContainer.setOnRefreshListener {
             getLastKnownLocation()
             swipeContainer.isRefreshing = false
         }
-    }
 
+        // perform set on query text listener event
+
+        searchViewMain.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                swipeContainer.isEnabled = false
+                searchBarIcon.visibility = View.GONE
+                if (housesList.isNullOrEmpty()){ emptySearchScreen()}
+                return false
+            }
+            @SuppressWarnings
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText?.isNotEmpty()) {
+                    swipeContainer.isEnabled = false
+                    searchBarIcon.visibility = View.GONE
+                    val displayList = mutableListOf<House>()
+                    displayList.clear()
+                    val search = newText.lowercase(Locale.getDefault())
+                    for (houseWithInfo in housesList) {
+                        if (houseWithInfo.city.lowercase(Locale.getDefault()).contains(search) || houseWithInfo.zip.lowercase(Locale.getDefault()).contains(search) ) {
+                            displayList.add(houseWithInfo)
+                        }
+                    }
+                    showHouses(displayList)
+                } else if (newText?.isEmpty()){
+                    listHouses()
+                }
+                return false
+            }
+        })
+    }
+    @SuppressWarnings
     private fun getLastKnownLocation() {
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -133,13 +139,14 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
+
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                        lastLatitude = location?.latitude!!
-                        lastLongitude = location?.longitude!!
-                        //to check values during programming
-                        Log.d("********", "getLastKnownLocation: ${location.latitude}")
-                        Log.d("********", "getLastKnownLocation: ${location.longitude}")
+                    lastLatitude = location?.latitude!!
+                    lastLongitude = location?.longitude!!
+                    //to check values during programming
+                    Log.d("********", "getLastKnownLocation: ${location.latitude}")
+                    Log.d("********", "getLastKnownLocation: ${location.longitude}")
                 }
         }
         listHouses()
@@ -152,7 +159,7 @@ class MainActivity : AppCompatActivity() {
                 getLastKnownLocation()
             }else{
                 Toast.makeText(this, warning, Toast.LENGTH_LONG).show()
-                }
+            }
         }else{
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
@@ -162,8 +169,8 @@ class MainActivity : AppCompatActivity() {
         //To get the houses from API and display them on the main screen
         HousesApi().getHouses().enqueue(object : Callback<List<House>> {
             override fun onResponse(call: Call<List<House>>, response: Response<List<House>>) {
-                val housedetails = response.body()
-                housedetails?.let {
+                val houseInformation = response.body()
+                houseInformation?.let {
                     //calculation of the distance between houses and current location
                     it.forEach { house ->
                         val results = FloatArray(1)
@@ -185,14 +192,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<List<House>>, t: Throwable) {
-                Toast.makeText(applicationContext, internetFailure, Toast.LENGTH_LONG).show()
+                //do nothing
             }
         })
     }
-    //display function that links the data and views together and sorts the list
 
+    //display function that links the data and views together and sorts the list
     private fun showHouses(houses: List<House>){
-        val sortedHouses = houses.sortedBy {it.price}
+        housesList = houses
+        val sortedHouses = housesList.sortedBy {it.price}
         val recyclerViewHouses: RecyclerView = findViewById(R.id.recyclerview_houses)
         recyclerViewHouses.layoutManager = LinearLayoutManager(this)
         recyclerViewHouses.adapter = HouseAdapter(sortedHouses){ House ->
@@ -200,5 +208,10 @@ class MainActivity : AppCompatActivity() {
             houseDetailsActivityIntent.putExtra("house",House)
             startActivity(houseDetailsActivityIntent)
         }
+    }
+    //function to start empty search screen activity via intent
+    private fun emptySearchScreen(){
+        val intent = Intent(this, EmptyScreenActivity::class.java)
+        startActivity(intent)
     }
 }

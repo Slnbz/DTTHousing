@@ -1,27 +1,26 @@
 <resources>
-    <string name="app_name">DTTHousing</string>
-    <string name="dtt_real_estate">DTT REAL ESTATE</string>
+    <string name="appName">DTTHousing</string>
+    <string name="dttRealEstate">DTT REAL ESTATE</string>
     <string name="search">Search</string>
-    <string name="house_image">HouseImage</string>
-    <string name="_45_000">$45,000</string>
-    <string name="rick_street">Blimblam street</string>
+    <string name="houseImage">HouseImage</string>
+    <string name="d45000">$45,000</string>
+    <string name="rickStreet">Blimblam street</string>
     <string name="distance">56.5 km</string>
-    <string name="amount_of_bed">1</string>
-    <string name="floor_m2">45</string>
-    <string name="amount_of_bath">1</string>
+    <string name="amountOfBed">1</string>
+    <string name="floorM2">45</string>
+    <string name="amountOfBath">1</string>
     <string name="bed">bed</string>
     <string name="bath">bath</string>
     <string name="floor">floor</string>
     <string name="location">location</string>
-    <string name="home_button">home button</string>
-    <string name="info_button">info button</string>
+    <string name="homeButton">home button</string>
+    <string name="infoButton">info button</string>
     <string name="about">ABOUT</string>
-    <string name="body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae consequatur ex iste provident quia, quibusdam reiciendis. Alias aspernatur assumenda cupiditate dicta et ex laudantium, minus obcaecati perferendis quod recusandae similique temporibus, voluptatibus. A ab, ad alias aliquam consequatur, deserunt dolore eum illo libero minima obcaecati provident quia voluptatem voluptates.</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="design_and_development">Design and Development</string>
-    <string name="by_dtt">by DTT</string>
+    <string name="body">DTT is not your average software development company because besides technical knowledge we also have a solid marketing background. With passion, we work on a perfect mix of technology, strategy, and creativity. DTT was established in 2010, and in a short period we have made significant steps forward; a substantial portfolio, excellent credentials, respectable clients, and most importantly a competent and driven team.</string>
+    <string name="designAndDevelopment">Design and Development</string>
+    <string name="byDtt">by DTT</string>
     <string name="dttLogo">dttlogo</string>
-    <string name="dtt_website">d-tt.nl</string>
+    <string name="dttWebsite">d-tt.nl</string>
     <string name="locationTitle">Location</string>
     <string name="descriptionTitle">Description</string>
     <string name="dummyPrice">$45,000</string>
@@ -32,5 +31,5 @@
     <string name="priceString">$ %d</string>
     <string name="searchHint">Search for a home</string>
     <string name="searchIcon">search icon</string>
-
+    <string name="dttLogoSplashScreen">DTTLogo</string>
 </resources>

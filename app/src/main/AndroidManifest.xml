@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android.dtthousing">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/appName"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DTTHousing"
@@ -19,8 +19,7 @@
         <activity
             android:name=".ui.main.view.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar"
-            />
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".ui.main.view.InfoActivity"
             android:exported="true"
@@ -28,8 +27,11 @@
         <activity
             android:name=".ui.main.view.HouseDetails"
             android:exported="true"
-            android:theme="@style/myActionbarTransparent"
-            />
+            android:theme="@style/myActionbarTransparent" />
+        <activity
+            android:name=".ui.main.view.EmptyScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".ui.main.view.SplashScreenActivity"
             android:exported="true"
@@ -39,6 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
